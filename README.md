@@ -9,3 +9,4 @@ The leveraging of waste streams for energy and chemical production could add rev
 
 # Requirements for Running WESyS
 Stella 10.3 or later. Stella is a proprietary software and is available here: https://www.iseesystems.com/
+
