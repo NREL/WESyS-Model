@@ -1,0 +1,5086 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee" uses_arrays="2"/>
+		<name>Global Inputs</name>
+		<uuid>1790f240-d4f5-4c1b-9a4f-99cfbf779bc5</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.9.5" isee:build_number="2077" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:sim_duration="1.5" isee:simulation_delay="0.125" isee:restore_on_start="false" method="Euler" time_units="Months" isee:instantaneous_flows="false">
+		<start>0</start>
+		<stop>12</stop>
+		<dt reciprocal="true">4</dt>
+	</sim_specs>
+	<dimensions>
+		<dim name="WWTPSize">
+			<elem name="WWTP0to1"/>
+			<elem name="WWTP1to10"/>
+			<elem name="WWTP10to100"/>
+			<elem name="WWTP100Up"/>
+		</dim>
+		<dim name="TechAttribute">
+			<elem name="ProcessYield"/>
+			<elem name="PSuccess"/>
+			<elem name="InputCap"/>
+			<elem name="CapitalCost"/>
+			<elem name="Risk"/>
+			<elem name="DebtFrac"/>
+		</dim>
+		<dim name="WTEConfig">
+			<elem name="NoWTE"/>
+			<elem name="CF"/>
+			<elem name="Elec"/>
+			<elem name="CNG"/>
+			<elem name="PNG"/>
+			<elem name="BCFuel"/>
+			<elem name="TCFUEL"/>
+			<elem name="HTL"/>
+			<elem name="CHP"/>
+			<elem name="Other"/>
+		</dim>
+		<dim name="InvestScale">
+			<elem name="small"/>
+			<elem name="medium"/>
+			<elem name="large"/>
+		</dim>
+		<dim name="LCFS_Standard">
+			<elem name="Gasoline"/>
+			<elem name="Diesel"/>
+		</dim>
+	</dimensions>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="model" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="1" keep="false" rifp="false"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+		<isee:time_format name="Number Not Scaled With Precision of 1" precision="1" scale_by="1" type="number"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units>
+		<unit name="Dimensionless">
+			<eqn>1</eqn>
+			<alias>dmnl</alias>
+			<alias>unitless</alias>
+			<alias>fraction</alias>
+		</unit>
+		<unit name="Feet">
+			<eqn/>
+			<alias>ft</alias>
+			<alias>foot</alias>
+		</unit>
+		<unit name="Meters">
+			<eqn/>
+			<alias>m</alias>
+			<alias>meter</alias>
+		</unit>
+		<unit name="Gallons">
+			<eqn/>
+			<alias>gal</alias>
+			<alias>gallon</alias>
+		</unit>
+		<unit name="Miles">
+			<eqn/>
+			<alias>mi</alias>
+			<alias>mile</alias>
+		</unit>
+		<unit name="Grams">
+			<eqn/>
+			<alias>g</alias>
+			<alias>gram</alias>
+		</unit>
+		<unit name="Tons">
+			<eqn/>
+			<alias>ton</alias>
+		</unit>
+		<unit name="Tonnes">
+			<eqn/>
+			<alias>tonne</alias>
+			<alias>metric ton</alias>
+		</unit>
+		<unit name="US Dollars">
+			<eqn/>
+			<alias>USD</alias>
+			<alias>$</alias>
+		</unit>
+		<unit name="Days">
+			<eqn/>
+			<alias>day</alias>
+		</unit>
+		<unit name="Hours">
+			<eqn/>
+			<alias>hr</alias>
+			<alias>hour</alias>
+		</unit>
+		<unit name="Years">
+			<eqn/>
+			<alias>yr</alias>
+			<alias>year</alias>
+		</unit>
+		<unit name="Per Year">
+			<eqn>1/Years</eqn>
+		</unit>
+		<unit name="cubic meters per million gal">
+			<eqn>m^3/(million-gal)</eqn>
+		</unit>
+		<unit name="GJ per million gal">
+			<eqn>GJ/(million-gal)</eqn>
+		</unit>
+		<unit name="million gal per day">
+			<eqn>million-gal/day</eqn>
+		</unit>
+		<unit name="million gal per year">
+			<eqn>million-gal/yr</eqn>
+		</unit>
+		<unit name="per million">
+			<eqn>1/million</eqn>
+		</unit>
+		<unit name="tonne per million gal">
+			<eqn>tonne/(million-gal)</eqn>
+		</unit>
+		<unit name="ton per million gal">
+			<eqn>ton/(million-gal)</eqn>
+		</unit>
+		<unit name="Btu per gallon">
+			<eqn>btu/gallon</eqn>
+		</unit>
+		<unit name="MilesPerVehiclePerYr">
+			<eqn>mi/(vehicles*yr)</eqn>
+		</unit>
+		<unit name="GalPerTerminalPerYr">
+			<eqn>gal/(terminals*yr)</eqn>
+		</unit>
+		<unit name="PerLoadUSDPerMi">
+			<eqn>USD/(mi*Load)</eqn>
+		</unit>
+		<unit name="ProjectGalPerTon">
+			<eqn>Projects*(gal/ton)</eqn>
+		</unit>
+		<unit name="DaysPerYr">
+			<eqn>day/yr</eqn>
+		</unit>
+		<unit name="ProjectUSDPerYr">
+			<eqn>Projects*(USD/yr)</eqn>
+		</unit>
+		<unit name="ProjectTonPerDay">
+			<eqn>Projects*(ton/day)</eqn>
+		</unit>
+		<unit name="MillionBTUPerGal">
+			<eqn>MillionBTU/gal</eqn>
+		</unit>
+		<unit name="GramsPerMJ">
+			<eqn>g/MJ</eqn>
+		</unit>
+		<unit name="MillionBTUperMJ">
+			<eqn>MillionBTU/MJ</eqn>
+		</unit>
+		<unit name="HoursPerProjectPerYr">
+			<eqn>hr/(projects*yr)</eqn>
+		</unit>
+		<unit name="USDPerUnit">
+			<eqn>USD/units</eqn>
+		</unit>
+		<unit name="USDA to nominal">
+			<eqn>units/USDA</eqn>
+		</unit>
+		<unit name="TonsPerUnit">
+			<eqn>ton/units</eqn>
+		</unit>
+		<unit name="UnitsPerAcrePerYrPerYr">
+			<eqn>units/(acre-yr^2)</eqn>
+		</unit>
+		<unit name="acres per square mile">
+			<eqn>acre/mi^2</eqn>
+		</unit>
+		<unit name="barrels per gallon">
+			<eqn>bbl/gal</eqn>
+		</unit>
+		<unit name="billion GPY">
+			<eqn>billions-gal/yr</eqn>
+		</unit>
+		<unit name="BillionMilesPerYear">
+			<eqn>billions-mi/yr</eqn>
+		</unit>
+		<unit name="days per year">
+			<eqn>day/year</eqn>
+		</unit>
+		<unit name="dollars per acre">
+			<eqn>usd/acres</eqn>
+		</unit>
+		<unit name="dollars per acre per yr">
+			<eqn>USD/(acre-yr)</eqn>
+		</unit>
+		<unit name="dollars per load">
+			<eqn>usd/load</eqn>
+		</unit>
+		<unit name="gal per ton">
+			<eqn>gal/ton</eqn>
+		</unit>
+		<unit name="gallons per barrel">
+			<eqn>gal/bbl</eqn>
+		</unit>
+		<unit name="gallons per dollar">
+			<eqn>gal/USD</eqn>
+		</unit>
+		<unit name="gallons per month">
+			<eqn>gal/mo</eqn>
+		</unit>
+		<unit name="gallons per visit">
+			<eqn>gal/Visit</eqn>
+		</unit>
+		<unit name="gallons per year">
+			<eqn>gal/yr</eqn>
+		</unit>
+		<unit name="GPD">
+			<eqn>gal/day</eqn>
+		</unit>
+		<unit name="million tons">
+			<eqn>million-ton</eqn>
+		</unit>
+		<unit name="million units">
+			<eqn>million-units</eqn>
+		</unit>
+		<unit name="million USD">
+			<eqn>USD-million</eqn>
+		</unit>
+		<unit name="million usda">
+			<eqn>million-usda</eqn>
+		</unit>
+		<unit name="months per year">
+			<eqn>mo/yr</eqn>
+		</unit>
+		<unit name="MPG">
+			<eqn>mi/gal</eqn>
+		</unit>
+		<unit name="per billion">
+			<eqn>1/billions</eqn>
+		</unit>
+		<unit name="per thousand">
+			<eqn>1/thousand</eqn>
+		</unit>
+		<unit name="Projects per Year">
+			<eqn>projects/yr</eqn>
+		</unit>
+		<unit name="thousand acres">
+			<eqn>thousand-acres</eqn>
+		</unit>
+		<unit name="thousand ton per yr">
+			<eqn>thousand-ton/yr</eqn>
+		</unit>
+		<unit name="ton per acre per yr">
+			<eqn>ton/(acre-yr)</eqn>
+		</unit>
+		<unit name="ton per day">
+			<eqn>ton/day</eqn>
+		</unit>
+		<unit name="ton per year">
+			<eqn>ton/yr</eqn>
+		</unit>
+		<unit name="tons per load">
+			<eqn>ton/load</eqn>
+		</unit>
+		<unit name="USD per barrel">
+			<eqn>USD/bbl</eqn>
+		</unit>
+		<unit name="USD per gallon">
+			<eqn>USD/gal</eqn>
+		</unit>
+		<unit name="USD per ton">
+			<eqn>USD/ton</eqn>
+		</unit>
+		<unit name="USD per visit">
+			<eqn>USD/Visit</eqn>
+		</unit>
+		<unit name="visits per month">
+			<eqn>Visit/mo</eqn>
+		</unit>
+		<unit name="Visits per year">
+			<eqn>Visit/yr</eqn>
+		</unit>
+		<unit name="VehiclesMPG">
+			<eqn>Vehicles*mi/gal</eqn>
+		</unit>
+		<unit name="TonnePerGram">
+			<eqn>tonne/g</eqn>
+		</unit>
+		<unit name="TonnesPerGram">
+			<eqn>Tonnes/g</eqn>
+		</unit>
+	</model_units>
+	<model name="Global_Inputs">
+		<variables>
+			<aux name="one year" access="output">
+				<doc>DEFINITION: 	Conversion factor		
+			
+UNITS: 	year
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input  | Module Interface
+
+			
+COMMENTS: 			
+</doc>
+				<eqn>1</eqn>
+				<units>year</units>
+			</aux>
+			<aux name="three" access="output">
+				<doc>DEFINITION: 	Three		
+			
+UNITS: 	Unitless	
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input  | Module Interface
+
+			
+COMMENTS: 			
+</doc>
+				<eqn>3</eqn>
+				<units>Unitless</units>
+			</aux>
+			<aux name="one unit" access="output">
+				<doc>DEFINITION: 	Conversion factor		
+			
+UNITS: 	units
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input  | Module Interface
+
+			
+COMMENTS: 			
+</doc>
+				<eqn>1</eqn>
+				<units>units</units>
+			</aux>
+			<aux name="tonne per gram" access="output">
+				<doc>DEFINITION: 	Conversion factor		
+			
+UNITS: 	TonnePerGram		
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input  | Module Interface
+
+			
+COMMENTS: 			
+</doc>
+				<eqn>0.000001</eqn>
+				<units>TonnePerGram</units>
+			</aux>
+			<aux name="days per year" access="output">
+				<doc>DEFINITION: 	Conversion factor		
+			
+UNITS: 	day/yr	
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input  | Module Interface
+
+			
+COMMENTS: 			
+</doc>
+				<eqn>330</eqn>
+				<units>day/yr</units>
+			</aux>
+			<aux name="GJ per GGE" access="output">
+				<doc>DEFINITION: 	Conversion factor		
+			
+UNITS: 	GJ/gal	
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input | Module Interface
+			
+COMMENTS: 			
+0.13176 GJ/GGE
+https://www.convertunits.com/from/gigajoule/to/gallon+[U.S.]+of+automotive+gasoline</doc>
+				<eqn>0.13176</eqn>
+				<units>GJ/gal</units>
+			</aux>
+			<aux name="ton per tonne" access="output">
+				<doc>DEFINITION: 	Conversion factor		
+			
+UNITS: 	ton/tonne
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input  | Module Interface
+
+			
+COMMENTS: 			
+</doc>
+				<eqn>1.102310995</eqn>
+				<units>ton/tonne</units>
+			</aux>
+			<aux name="GJ per mmBtu" access="output">
+				<doc>DEFINITION: 	Conversion factor		
+			
+UNITS: 	GJ/(million-BTU)
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input | Module Interface
+			
+COMMENTS: 			
+</doc>
+				<eqn>1.05505585</eqn>
+				<units>GJ/(million-BTU)</units>
+			</aux>
+			<aux name="energy content ethanol">
+				<doc>DEFINITION: 	Energy content of ethanol		
+			
+UNITS: 	Btu per gallon	
+			
+TYPE: 	Scalar 	 | Constant 	 | Technoeconomic input
+			
+COMMENTS: 			
+</doc>
+				<eqn>77500</eqn>
+				<units>Btu per gallon</units>
+			</aux>
+			<aux name="renewable content ethanol">
+				<doc>DEFINITION: 	renewable energy fraction for ethanol		
+			
+UNITS: 	unitless
+			
+TYPE: 	Scalar 	 | Constant 	 | Technoeconomic input
+			
+COMMENTS: 	used to calculate RIN equivalence		
+</doc>
+				<eqn>0.931</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="CH4 energy density" access="output">
+				<doc>DEFINITION: 	Energy density of methane		
+			
+UNITS: 	GJ/m^3
+			
+TYPE: 	Scalar 	 | Constant 	 | Technoeconomic input | Module Interface
+			
+COMMENTS: 			
+
+HHV CH4 = 1,011 Btu per scf
+
+1 Btu scf = 0.03723 MJ/M3
+
+1 GJ = 1000 MJ</doc>
+				<eqn>0.024218</eqn>
+				<units>GJ/m^3</units>
+			</aux>
+			<aux name="Carbon Intensity by fuel">
+				<doc>DEFINITION: 	carbon intensity of different fuels represented in model			
+				
+UNITS: 	GramsPerMJ		
+				
+TYPE: 	Array 	 | Constant 	 | Technoeconomic input	 |
+				
+COMMENTS: 				
+Latest values from 
+https://www.arb.ca.gov/fuels/lcfs/dashboard/creditpricecalculator.xlsx
+
+Old values 2016: https://www.arb.ca.gov/fuels/lcfs/guidance/regguidance_16-04.pdf 
+
+Based on compliance year of 2017</doc>
+				<dimensions>
+					<dim name="LCFS_Standard"/>
+				</dimensions>
+				<element subscript="Gasoline">
+					<eqn>95.2</eqn>
+				</element>
+				<element subscript="Diesel">
+					<eqn>98.44</eqn>
+				</element>
+				<units>GramsPerMJ</units>
+			</aux>
+			<aux name="Energy Economy\nRatio by fuel">
+				<doc>DEFINITION: 	energy to economy ratio for different fuels		
+			
+UNITS: 	unitless	
+			
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="LCFS_Standard"/>
+				</dimensions>
+				<eqn>1</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="CI to EER ratio by fuel" access="output">
+				<doc>DEFINITION: 	carbon intensity of different fuels represented in model, after accounting for &quot;energy to economy ratio&quot;			
+				
+UNITS: 	GramsPerMJ		
+				
+TYPE: 	Array 	 | Constant 	 | Internal Calculation	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<dimensions>
+					<dim name="LCFS_Standard"/>
+				</dimensions>
+				<eqn>Carbon_Intensity_by_fuel/Energy_Economy_Ratio_by_fuel</eqn>
+				<units>GramsPerMJ</units>
+			</aux>
+			<aux name="renewable content WTE Product">
+				<doc>DEFINITION: 	The portion of a renewable fuel that comes from renewable biomass, expressed as a fraction, on an energy basis		
+			
+UNITS: 	Unitless
+			
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 	Energy balance currently unknown. Assume 100% of energy content in fuel comes from renewable biomass</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0.972</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0.972</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>Unitless</units>
+			</aux>
+			<aux name="energy content WTE Product">
+				<doc>DEFINITION: 	Energy content of the renewable fuel (lower heating value)		
+			
+UNITS: 	Btu per gallon
+			
+TYPE: 	Array 	 | Constant 	 | Technoeconomic input
+			
+COMMENTS: 			
+Alternative Fuels Data Center. http://www.afdc.energy.gov/fuels/fuel_properties.php
+
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>77000</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>114105.6</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>123829.2</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>119500</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>119500</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>119500</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>77000</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>Btu per gallon</units>
+			</aux>
+			<aux name="RGS Scenario">
+				<doc>DEFINITION: 	Renewable Gas Standard Scenario		
+			
+UNITS: 	USD/gal	
+			
+TYPE: 	Array 	 | Graphical Function	 | Scenario input
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>TIME</eqn>
+				<gf>
+					<xscale min="2000" max="2040"/>
+					<yscale min="0" max="20"/>
+					<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+				</gf>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="RIN Scenario">
+				<doc>DEFINITION: 	Price of Renewable Identification Numbers (RINs)		
+			
+UNITS: 	USD/gal
+			
+TYPE: 	Scalar 	 | Graphical Function	 | Scenario input
+			
+COMMENTS: 			
+Default values are set to 0. RIN data can be found at https://www.epa.gov/fuels-registration-reporting-and-compliance-help/rin-trades-and-price-information</doc>
+				<eqn>TIME</eqn>
+				<gf>
+					<xscale min="2015" max="2050"/>
+					<yscale min="0" max="3"/>
+					<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+				</gf>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="RIN equivalence value">
+				<doc>DEFINITION: 	Equivalence value used to determine the ethanol equivalence of other renewable fuels for the allocation of Renewable Idenficiation Numbers (RINs)		
+			
+UNITS: 	USD/gal
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>(renewable_content_WTE_Product/renewable_content_ethanol) * (energy_content_WTE_Product/energy_content_ethanol)</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="RIN input GGE">
+				<doc>DEFINITION: 	RIN value, on GGE basis, used by simulation
+			
+UNITS: 	USD/gal	
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Scenario input
+			
+COMMENTS: Scenario multiplier applies after time threshold has been met during simulation</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>(RIN_Scenario_Input * RIN_equivalence_value / GGE_per_gallon_ethanol)</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="Unit Rev Input GGE">
+				<doc>DEFINITION: 	Unit revenues for waste-to-energy fuels, on GGE basis, used by simulation
+			
+UNITS: 	USD/gal	
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Scenario input
+			
+COMMENTS: </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>Unit_Price_Scenario_Input + PTC_REC_Scenario_Input + RGS_input_GGE + RIN_input_GGE</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="RGS equivalence value">
+				<doc>DEFINITON: Equivalence value used to determine the ethanol equivalence of other renewable fuels for the allocation of Renewable Idenficiation Numbers (RINs)
+
+UNITS: unitless
+
+TYPE: Scalar 	 | Constant 	 | Data input 	 | Sector Interface
+
+COMMENTS: Currently assumes that all values from 2017-2040 are equal to the price in 2016 </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>1</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="RGS input GGE">
+				<doc>DEFINITION: 	Renewable Gas Standard for waste-to-energy fuels, on GGE basis, used by simulation
+			
+UNITS: 	USD/gal	
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Scenario input
+			
+COMMENTS: </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>RGS_Scenario_Input * RGS_equivalence_value / GGE_per_gallon_ethanol</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="PTC REC Scenario">
+				<doc>DEFINITION: 	Price incentive for energy production associated with a specific technology pathway (Production Tax Credit)		
+			
+UNITS: 	USD/gal
+			
+TYPE: 	Array 	 | Graphical Function	 | Scenario input
+			
+COMMENTS: 			
+			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="CF">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="Elec">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="CNG">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="PNG">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="BCFuel">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="TCFUEL">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="HTL">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="CHP">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="Other">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<eqn>TIME</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="Unit Rev Input GJ" access="output">
+				<doc>DEFINITION: 	Unit revenues for waste-to-energy fuels, on gigajoule basis, used by simulation
+			
+UNITS: 	SUSD/gal
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Scenario input | Module Interface
+			
+COMMENTS: </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>Unit_Rev_Input_GGE / GJ_per_GGE</eqn>
+				<units>USD/GJ</units>
+			</aux>
+			<aux name="feet per mile">
+				<doc>DEFINITION: 	Conversion factor		
+			
+UNITS: 	ft/mi
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input 
+			
+COMMENTS: 			
+</doc>
+				<eqn>5280</eqn>
+				<units>ft/mi</units>
+			</aux>
+			<aux name="is it interconnectable" access="output">
+				<doc>DEFINITION: 	Set of flags indicating which conversion options can be connected to gas pipelines			
+				
+UNITS: 	unitless		
+				
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="PNG pipeline cost USD per ft">
+				<doc>DEFINITION: 	Per-foot-cost of pipeline construction		
+				
+UNITS: 	USD/ft		
+				
+TYPE: 	Scalar 	 | Constant 	 | Technoeconomic input
+				
+COMMENTS: 				
+Based on SoCalGas 2016
+
+See here: https://www.epa.gov/sites/production/files/2016-12/documents/gas_to_grid_interconnection_-_socal.pdf</doc>
+				<eqn>200</eqn>
+				<units>USD/ft</units>
+			</aux>
+			<aux name="PNG pipeline cost\nUSD per mi" access="output">
+				<doc>DEFINITION: 	Per-mile-cost of pipeline construction		
+				
+UNITS: 	US Dollars/Miles		
+				
+TYPE: 	Scalar 	 | Instantaneous Equation	 | Internal Calculation	 | Module Interface
+				
+COMMENTS: 				
+Based on SoCalGas 2016
+
+See here: https://www.epa.gov/sites/production/files/2016-12/documents/gas_to_grid_interconnection_-_socal.pdfBased on SoCalGas 2016
+
+See here: https://www.epa.gov/sites/production/files/2016-12/documents/gas_to_grid_interconnection_-_socal.pdf</doc>
+				<eqn>PNG_pipeline_cost_USD_per_ft * feet_per_mile</eqn>
+				<units>US Dollars/Miles</units>
+			</aux>
+			<aux name="pipeline fixed cost" access="output">
+				<doc>DEFINITION: 	Fixed cost associated with interconnect to gas pipeline			
+				
+UNITS: 	USD
+
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<eqn>1500000</eqn>
+				<units>USD</units>
+			</aux>
+			<group name="Physical Inputs and Conversions" run="false">
+				<entity name="one_unit"/>
+				<entity name="one_million"/>
+				<entity name="tonne_per_gram"/>
+				<entity name="GJ_per_GGE"/>
+				<entity name="Carbon_Intensity_by_fuel"/>
+				<entity name="conversion_efficiencies"/>
+				<entity name="energy_content_ethanol"/>
+				<entity name="Energy_Economy_Ratio_by_fuel"/>
+				<entity name="ton_per_tonne"/>
+				<entity name="solids_energy_density_wastewater"/>
+				<entity name="energy_content_WTE_Product"/>
+				<entity name="Gas_Conversion_Process"/>
+				<entity name="one_year"/>
+				<entity name="one_hundred_Pct"/>
+				<entity name="solids_energy_density_manure"/>
+				<entity name="energy_density_LCFS_Std"/>
+				<entity name="feet_per_mile"/>
+				<entity name="three"/>
+				<entity name="GGE_per_gallon_ethanol"/>
+				<entity name="CI_to_EER_ratio_by_fuel"/>
+				<entity name="GJ_per_mmBtu"/>
+				<entity name="CH4_energy_density"/>
+				<entity name="renewable_content_ethanol"/>
+				<entity name="renewable_content_WTE_Product"/>
+				<entity name="days_per_year"/>
+			</group>
+			<group name="Cost and Revenue Related Inputs" run="false">
+				<entity name="RGS_equivalence_value"/>
+				<entity name="PTC_REC_Scenario_Multiplier"/>
+				<entity name="USE_PNNL_HTL_TEA"/>
+				<entity name="AEO_Low"/>
+				<entity name="Unit_Price_Scenario"/>
+				<entity name="PNG_pipeline_cost_USD_per_mi"/>
+				<entity name="frac_POTW_influx_to_coproduct"/>
+				<entity name="AEO_Reference"/>
+				<entity name="Base_PNNL_HTL_Op_Cost"/>
+				<entity name="frac_DOC_dissimilated"/>
+				<entity name="Unit_Price_Scenario_Multiplier"/>
+				<entity name="is_it_interconnectable"/>
+				<entity name="POTW_coproduct_unit_rev"/>
+				<entity name="pipeline_length_miles"/>
+				<entity name="PNNL_HTL_Op_Cost"/>
+				<entity name="User_Defined"/>
+				<entity name="Use_AEO_Reference"/>
+				<entity name="PNG_pipeline_cost_USD_per_ft"/>
+				<entity name="integerized_AEO_Selector"/>
+				<entity name="PNNL_CAFO_HTL_Scale"/>
+				<entity name="Base_PNNL_HTL_FCI"/>
+				<entity name="AEO_High"/>
+				<entity name="dwell_time_multiplier"/>
+				<entity name="Use_AEO_Low"/>
+				<entity name="HTL_OpEx_multiplier"/>
+				<entity name="RGS_Scenario"/>
+				<entity name="biosolid_diversion_unit_rev"/>
+				<entity name="scenario_input_unit_price"/>
+				<entity name="AEO_Selector"/>
+				<entity name="per_tonne_tipping_fee"/>
+				<entity name="RIN_Scenario_Multiplier"/>
+				<entity name="PNNL_POTW_HTL_Scale"/>
+				<entity name="yield_fractional_improvement"/>
+				<entity name="PNNL_POTW_HTL_Daily_Scale"/>
+				<entity name="PTC_REC_Scenario"/>
+				<entity name="PNNL_HTL_FCI"/>
+				<entity name="pipeline_fixed_cost"/>
+				<entity name="Use_AEO_Hi"/>
+				<entity name="frac_POTW_solid_outflux_diverted"/>
+				<entity name="PNNL_scale_factor"/>
+				<entity name="frac_solids_remaining_after_processing"/>
+				<entity name="RGS_Scenario_Multiplier"/>
+				<entity name="frac_CAFO_solid_outflux_diverted"/>
+				<entity name="RIN_Scenario"/>
+				<entity name="Use_User_Defined"/>
+				<entity name="HTL_FCI_multiplier"/>
+			</group>
+			<group name="Calculation of revenue input" run="false">
+				<entity name="RIN_input_GGE"/>
+				<entity name="Unit_Price_Scenario_Input"/>
+				<entity name="Rins_Active"/>
+				<entity name="Unit_Rev_Input_GJ"/>
+				<entity name="RIN_Scenario_Input"/>
+				<entity name="RGS_Scenario_Input"/>
+				<entity name="LCFS_Multiplier_Global"/>
+				<entity name="RGS_input_GGE"/>
+				<entity name="Scenario_Multiplier_Time_Threshold"/>
+				<entity name="RIN_equivalence_value"/>
+				<entity name="PTC_REC_Scenario_Input"/>
+				<entity name="Unit_Rev_Input_GGE"/>
+			</group>
+			<aux name="GGE per gallon ethanol">
+				<doc>DEFINITION: 	Conversion factor		
+			
+UNITS: unitless
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input  | Module Interface
+
+			
+COMMENTS: 		GGE is gasoline gallon equivalent
+</doc>
+				<eqn>1.5</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="energy\ndensity LCFS Std" access="output">
+				<doc>DEFINITION: 	energy density associated with California low carbon fuel standard			
+				
+UNITS: 	MJ/gal			
+				
+TYPE: 	Array 	 | Constant 	 | Data input 	 | Module Interface
+				
+COMMENTS: 				
+Latest values from 
+https://www.arb.ca.gov/fuels/lcfs/dashboard/creditpricecalculator.xlsx
+
+Old values 2016: https://www.arb.ca.gov/fuels/lcfs/guidance/regguidance_16-04.pdf 
+
+Based on compliance year of 2017</doc>
+				<dimensions>
+					<dim name="LCFS_Standard"/>
+				</dimensions>
+				<element subscript="Gasoline">
+					<eqn>119.53</eqn>
+				</element>
+				<element subscript="Diesel">
+					<eqn>134.47</eqn>
+				</element>
+				<units>MJ/gal</units>
+			</aux>
+			<aux name="frac solids remaining after processing" access="output">
+				<doc>DEFINITION: 	Portion of solids that remain (in WWTPs) after processing			
+				
+UNITS: 	See units field, below			
+				
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)	 | Module Interface
+				
+COMMENTS: 				
+HTL is the most efficient at reducing solids (only 14% of solids are leftover after processing to generate bio-oil); other technologies are assumed to only be able to reduce solids by 50%; NoWTE and CF do not reduce solids by any amount (100% remain after processing) </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0.5</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0.5</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0.5</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0.5</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0.5</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0.14</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0.5</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>Unitless</units>
+			</aux>
+			<aux name="yield fractional\nimprovement" access="output">
+				<doc>DEFINITION: 	Improvement, relative to baseline value, in process yields			
+				
+UNITS: 	unitless	
+				
+TYPE: 	Array 	 | Constant 	 | Scenario input	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="WTE Config Identity Matrix" access="output">
+				<doc>DEFINITION: 	identity matrix used to manage waste-to-energy configurations as arrays		
+			
+UNITS: 	Unitless	
+			
+TYPE: 	Array 	 | Constant 	 | Data input | Module Interface
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE, NoWTE">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="NoWTE, CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="NoWTE, Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="NoWTE, CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="NoWTE, PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="NoWTE, BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="NoWTE, TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="NoWTE, HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="NoWTE, CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="NoWTE, Other">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF, NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF, CF">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CF, Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF, CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF, PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF, BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF, TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF, HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF, CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF, Other">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec, NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec, CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec, Elec">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="Elec, CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec, PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec, BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec, TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec, HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec, CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec, Other">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG, NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG, CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG, Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG, CNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CNG, PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG, BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG, TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG, HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG, CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG, Other">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG, NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG, CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG, Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG, CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG, PNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="PNG, BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG, TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG, HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG, CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG, Other">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel, NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel, CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel, Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel, CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel, PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel, BCFuel">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="BCFuel, TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel, HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel, CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel, Other">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL, NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL, CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL, Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL, CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL, PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL, BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL, TCFUEL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="TCFUEL, HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL, CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL, Other">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL, NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL, CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL, Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL, CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL, PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL, BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL, TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL, HTL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="HTL, CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL, Other">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP, NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP, CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP, Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP, CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP, PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP, BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP, TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP, HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP, CHP">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CHP, Other">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other, NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other, CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other, Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other, CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other, PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other, BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other, TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other, HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other, CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other, Other">
+					<eqn>1</eqn>
+				</element>
+				<units>Unitless</units>
+			</aux>
+			<aux name="frac DOC dissimilated" access="output">
+				<doc>DEFINITION: 	fraction of degradable organic carbon that is dissimilated (0.5 for the U.S.)			
+				
+UNITS: 	unitless			
+				
+TYPE: 	Scalar 	 | Constant 	 | Technoeconomic input	 | Module Interface
+				
+COMMENTS: 	based on IPCC 			
+	https://www.ipcc-nggip.iges.or.jp/public/gl/guidelin/ch6ref1.pdf			
+</doc>
+				<eqn>0.5</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="per tonne tipping fee" access="output">
+				<doc>DEFINITION: 	landfill tipping fee			
+				
+UNITS: 	USD/tonne
+				
+TYPE: 	Scalar 	 | Constant 	 | Assumed value(s)	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<eqn>52.21</eqn>
+				<units>USD/tonne</units>
+			</aux>
+			<stock name="Commercial Maturity" access="output">
+				<doc>DEFINITION: 	Accumulates commercial-scale maturity			
+				
+UNITS: 	Unitless		
+				
+TYPE: 	Array 	 | Stock	 | Internal Calculation	 | Module Interface
+				
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>Initial_Indices_of_Comm_Maturity</eqn>
+				<inflow>comm_learning_logic</inflow>
+				<non_negative/>
+				<units>Unitless</units>
+			</stock>
+			<flow name="comm learning logic">
+				<doc>DEFINITION: 	Learning curve logic calculates flow that increases  maturity. Applies quantity (1-progress ratio) to maturity gap and rate of doubling, to generate increase in maturity. Each doubling of cumulative output drives a constant percentage change in the gap between &quot;current&quot; and mature index of maturity.		
+			
+UNITS: 	Per Year	
+			
+TYPE: 	Array 	 | Flow	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>rate_of_doubling_comm_experience * comm_maturity_gap * (1 - Comm_Progress_Ratios  * ProgRatio_Multiplier)+ Commercial_Maturity_Pulse_Logic</eqn>
+				<non_negative/>
+				<units>Per Year</units>
+			</flow>
+			<aux name="comm maturity gap">
+				<doc>DEFINITION: 	Difference between maximum maturity (1) and actual maturity at commercial scale		
+			
+UNITS: 	Unitless
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>1 - Commercial_Maturity</eqn>
+				<units>Unitless</units>
+			</aux>
+			<stock name="Number of Doublings of Comm Experience">
+				<doc>DEFINITION: 	Tracks the cumulative number of doublings of  commercial-scale experience 		
+			
+UNITS: 	Doubling	
+			
+TYPE: 	Array 	 | Stock	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>0</eqn>
+				<inflow>rate_of_doubling_comm_experience</inflow>
+				<non_negative/>
+				<units>Doubling</units>
+			</stock>
+			<stock name="Cumulative Comm Experience">
+				<doc>DEFINITION: 	cumulativecommercial experience that have been logged by different pathways, expressed by cumulative production of energy		
+			
+UNITS: 	GJ	
+			
+TYPE: 	Array 	 | Stock	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>Min_Comm_Experience_for_Learning</eqn>
+				<inflow>logging_comm_experience</inflow>
+				<non_negative/>
+				<units>GJ</units>
+			</stock>
+			<flow name="logging comm experience">
+				<doc>DEFINITION: 	accrual of experience at commercial scale		
+			
+UNITS: 	GJ/yr	
+			
+TYPE: 	Array 	 | Flow	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>LF_yrly_energy_prodn_by_config + CAFO_yrly_energy_prodn_by_config + WWTP_yrly_energy_prodn_by_config +
+WWTP_yrly_energy_prodn_by_config_1 + LF_yrly_energy_prodn_by_config_1 + CAFO_yrly_energy_prodn_by_config_1 + (Exogenous_yrly_energy_prodn_by_config * Exogenous_yrly_energy_Multiplier)</eqn>
+				<non_negative/>
+				<units>gj/yr</units>
+			</flow>
+			<flow name="rate of doubling comm experience">
+				<doc>DEFINITION: 	Translates fractional rate of growth in experience to yearly rate of doubling. Rate of doubling drives learning logic.		
+			
+UNITS: 	Doubling/Years
+			
+TYPE: 	Array 	 | Flow	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>frac_rate_of_growth_comm_experience/doubling_factor</eqn>
+				<non_negative/>
+				<units>Doubling/Years</units>
+			</flow>
+			<aux name="frac rate of growth comm experience" flow_concept="true">
+				<doc>DEFINITION: 	Calculates (fractional) rate of growth in commercial-scale experience. Used as input to rate of doubling calculation.		
+			
+UNITS: 	See units field, below		
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Internal Calculation
+			
+COMMENTS: 			
+ IF/THEN/ELSE construct prevents division by zero, unstable results when cumulative experience is &lt; experience threshold
+
+ </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>IF Cumulative_Comm_Experience &gt;= Min_Comm_Experience_for_Learning
+THEN logging_comm_experience/Cumulative_Comm_Experience
+ELSE 0</eqn>
+				<units>Per Year</units>
+			</aux>
+			<aux name="Min Comm Experience for Learning">
+				<doc>DEFINITION: 	sets minimum level of commercial scale experience before learning begins to accrue		
+			
+UNITS: 	GJ
+			
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 			
+
+Based on HTL design report 
+
+&quot;The modeled HTL plant processes 100 dry ton/day (92.4 ton/day dry, ash-free basis) of sludge in a slurry (water + solids) containing 12% total solids (11.2% ash-free solids). For perspective, a WWTP producing 100 dry ton/day of primary and secondary sludge mixture would treat roughly 133 million gal/day of wastewater (Shammas and Wang 2008) and would serve an approximate population of 1.7 million (EPA 2015a). A feedstock credit of $-16.20/wet ton ($-46/dry ton at 35% solids; $-50/ton dry, ash-free basis) is included in the analysis to account for the fact that WWTPs currently pay to have their sludge disposed.&quot;
+
+
+assume one year of commercial scale operation = min commercial experience for learning
+
+1.7 million person plant is commercial scale facility and generates 369,265 millionBtu/yr
+
+369,265 million Btu = 389,583 GJ </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>389583</eqn>
+				<units>GJ</units>
+			</aux>
+			<aux name="doubling factor">
+				<doc>DEFINITION: 	sets doubling factor as natural logarithm of 2	
+		
+UNITS: 	1/Doubling
+		
+TYPE: 	Scalar 	 | Constant 
+		
+COMMENTS: 		
+</doc>
+				<eqn>LN(2)/1</eqn>
+				<units>1/Doubling</units>
+			</aux>
+			<aux name="Comm Progress Ratios">
+				<doc>DEFINITION: 	progress ratio for commercial-scale learning		
+			
+UNITS: 	1/Doubling
+			
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>.7</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>1/Doubling</units>
+			</aux>
+			<aux name="ProgRatio Multiplier">
+				<doc>DEFINITION: 	sensitivity input for progress ratios
+				
+UNITS: 	unitless		
+				
+TYPE: 	Array 	 | Constant 	 | Scenario input
+
+				
+COMMENTS: 				</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="Price scaler">
+				<doc>DEFINITION: 	Scales price according to commercial maturity curve for biofuel production pathways (i.e., FT, HTL, BC fuel, TC fuel)		
+			
+UNITS: 	Unitless	
+			
+TYPE: 	Array 	 | Graphical Function	 | Assumed value(s)
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<gf>
+						<yscale min="0" max="1"/>
+						<xpts>0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1</xpts>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="CF">
+					<gf>
+						<yscale min="0" max="1"/>
+						<xpts>0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1</xpts>
+						<ypts>1,1,1,1,1,1,1,1,1,1,1</ypts>
+					</gf>
+				</element>
+				<element subscript="Elec">
+					<gf>
+						<yscale min="0" max="1"/>
+						<xpts>0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1</xpts>
+						<ypts>1,1,1,1,1,1,1,1,1,1,1</ypts>
+					</gf>
+				</element>
+				<element subscript="CNG">
+					<gf>
+						<yscale min="0" max="1"/>
+						<xpts>0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1</xpts>
+						<ypts>1,1,1,1,1,1,1,1,1,1,1</ypts>
+					</gf>
+				</element>
+				<element subscript="PNG">
+					<gf>
+						<yscale min="0" max="1"/>
+						<xpts>0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1</xpts>
+						<ypts>1,1,1,1,1,1,1,1,1,1,1</ypts>
+					</gf>
+				</element>
+				<element subscript="BCFuel">
+					<gf>
+						<yscale min="0" max="1"/>
+						<xpts>0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1</xpts>
+						<ypts>0,0.0126984126984,0.0634920634921,0.15873015873,0.295238095238,0.444444444444,0.669841269841,0.888888888889,1,1,1</ypts>
+					</gf>
+				</element>
+				<element subscript="TCFUEL">
+					<gf>
+						<yscale min="0" max="1"/>
+						<xpts>0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1</xpts>
+						<ypts>0,0.0126984126984,0.0634920634921,0.15873015873,0.295238095238,0.444444444444,0.669841269841,0.888888888889,1,1,1</ypts>
+					</gf>
+				</element>
+				<element subscript="HTL">
+					<gf>
+						<yscale min="0" max="1"/>
+						<xpts>0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1</xpts>
+						<ypts>0,0.0126984126984,0.0634920634921,0.15873015873,0.295238095238,0.444444444444,0.669841269841,0.888888888889,1,1,1</ypts>
+					</gf>
+				</element>
+				<element subscript="CHP">
+					<gf>
+						<yscale min="0" max="1"/>
+						<xpts>0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1</xpts>
+						<ypts>0,0.0126984126984,0.0634920634921,0.15873015873,0.295238095238,0.444444444444,0.669841269841,0.888888888889,1,1,1</ypts>
+					</gf>
+				</element>
+				<element subscript="Other">
+					<gf>
+						<xscale min="0" max="2"/>
+						<yscale min="0" max="2"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<eqn>Commercial_Maturity</eqn>
+				<units>Unitless</units>
+			</aux>
+			<aux name="Mature Commercial\nMultipliers">
+				<doc>DEFINITION: 	When have fully mature commercial industry, multiplier of 1 implies you get mature industry values for technology attributes.		
+			
+UNITS: 	Unitless
+			
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 			
+
+
+COMMENT: </doc>
+				<dimensions>
+					<dim name="TechAttribute"/>
+				</dimensions>
+				<eqn>1</eqn>
+				<units>Unitless</units>
+			</aux>
+			<aux name="State of the Industry Multipliers" access="output">
+				<doc>DEFINITION: 	Set of multipliers describing maturity for technical attributes, for each represented technology. Multipliers gravitate toward value of 1 as industry matures. Multipliers are calculated as weighted avg of mature industry vs demo industry. dynamic weighting factor is given by indices of commercial maturity.			
+				
+UNITS: 	Unitless
+				
+TYPE: 	Array 	 | Instantaneous Equation	 | Internal Calculation	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+					<dim name="TechAttribute"/>
+				</dimensions>
+				<eqn>Mature_Commercial_Multipliers[TechAttribute]* Commercial_Maturity[WTEConfig] +
+PC_Multipliers*(1-Commercial_Maturity[WTEConfig])</eqn>
+				<units>Unitless</units>
+			</aux>
+			<aux name="Early Industry Multipliers">
+				<doc>DEFINITION: 	When have fully mature commercial industry, multiplier of 1 implies you get mature industry values for technology attributes.		
+			
+UNITS: 	Unitless
+			
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 			
+
+
+use p(success) slot to capture op cost maturity input</doc>
+				<dimensions>
+					<dim name="TechAttribute"/>
+				</dimensions>
+				<element subscript="ProcessYield">
+					<eqn>0.1</eqn>
+				</element>
+				<element subscript="PSuccess">
+					<eqn>2</eqn>
+				</element>
+				<element subscript="InputCap">
+					<eqn>0.8</eqn>
+				</element>
+				<element subscript="CapitalCost">
+					<eqn>2</eqn>
+				</element>
+				<element subscript="Risk">
+					<eqn>8</eqn>
+				</element>
+				<element subscript="DebtFrac">
+					<eqn>0</eqn>
+				</element>
+				<units>Unitless</units>
+			</aux>
+			<group name="Learning" run="false">
+				<entity name="doubling_factor"/>
+				<entity name="Commercial_Maturity"/>
+				<entity name="Pulse_PC_Maturity_Quantity"/>
+				<entity name="Exogenous_yrly_energy_Multiplier"/>
+				<entity name="Price_scaler"/>
+				<entity name="Mature_Commercial_Multipliers"/>
+				<entity name="PC_Progress_Ratios"/>
+				<entity name="rate_of_doubling_comm_experience"/>
+				<entity name="Min_Comm_Experience_for_Learning"/>
+				<entity name="ProgRatio_Multiplier"/>
+				<entity name="WWTP_yrly_energy_prodn_by_config"/>
+				<entity name="Comm_Progress_Ratios"/>
+				<entity name="rate_of_doubling_PC_experience"/>
+				<entity name="PC_maturity_gap"/>
+				<entity name="frac_rate_of_growth_PC_experience"/>
+				<entity name="State_of_the_Industry_Multipliers"/>
+				<entity name="PC_learning_logic"/>
+				<entity name="Exogenous_yrly_PC_multiplier"/>
+				<entity name="CAFO_yrly_energy_prodn_by_config_1"/>
+				<entity name="Early_Industry_Multipliers"/>
+				<entity name="Exogenous_yrly_demo_start"/>
+				<entity name="Number_of_Doublings_of_Comm_Experience"/>
+				<entity name="frac_rate_of_growth_comm_experience"/>
+				<entity name="Pulse_Commercial_Maturity_Quantity"/>
+				<entity name="comm_maturity_gap"/>
+				<entity name="Exogenous_yrly_demo_experience"/>
+				<entity name="Exogenous_yrly_demo_duration"/>
+				<entity name="Exogenous_yrly_energy_prodn_by_config"/>
+				<entity name="comm_learning_logic"/>
+				<entity name="LF_yrly_energy_prodn_by_config"/>
+				<entity name="CAFO_yrly_energy_prodn_by_config"/>
+				<entity name="multiplier_maturity_all_factors_arrayed"/>
+				<entity name="PC_Multipliers"/>
+				<entity name="logging_comm_experience"/>
+				<entity name="Cumulative_Comm_Experience"/>
+				<entity name="Min_PC_experience_for_learning"/>
+				<entity name="Number_of_Doublings_of_PC_Experience"/>
+				<entity name="PC_Maturity_Pulse_Logic"/>
+				<entity name="multiplier_for_maturity_all_factors"/>
+				<entity name="WWTP_yrly_energy_prodn_by_config_1"/>
+				<entity name="logging_PC_experience"/>
+				<entity name="Cumulative_PC_Experience"/>
+				<entity name="Commercial_Maturity_Pulse_Logic"/>
+				<entity name="Initial_Indices_of_PC_Maturity"/>
+				<entity name="PC_Maturity"/>
+				<entity name="exogenous_yrly_demo_quantity"/>
+				<entity name="Initial_Indices_of_Comm_Maturity"/>
+				<entity name="exogenous_yrly_demo_signal"/>
+				<entity name="LF_yrly_energy_prodn_by_config_1"/>
+				<entity name="Mature_PC_multipliers"/>
+			</group>
+			<aux name="Initial Indices of Comm Maturity">
+				<doc>DEFINITION: 	Initial level of pre-commercial technology maturity		
+			
+UNITS: 	Unitless
+			
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="LF yrly energy prodn by\nconfig" access="input">
+				<doc>DEFINITION: module interface variable
+
+UNITS: gj/yr
+
+TYPE: | Module Interface
+
+COMMENTS: </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>0</eqn>
+				<units>GJ/yr</units>
+			</aux>
+			<aux name="CAFO yrly energy prodn by\nconfig" access="input">
+				<doc>DEFINITION: module interface variable
+
+UNITS: gj/yr
+
+TYPE: | Module Interface
+
+COMMENTS: </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>0</eqn>
+				<units>GJ/yr</units>
+			</aux>
+			<aux name="WWTP yrly energy prodn by\nconfig" access="input">
+				<doc>DEFINITION: module interface variable
+
+UNITS: gj/yr
+
+TYPE: | Module Interface
+
+COMMENTS: </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>0</eqn>
+				<units>GJ/yr</units>
+			</aux>
+			<aux name="Unit Price Scenario Multiplier">
+				<doc>DEFINITION: 	sensitivity input for WTE fuel prices	
+				
+UNITS: 	unitless	
+				
+TYPE: 	Array 	 | Constant 	 | Scenario input
+
+				
+COMMENTS: 				
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>1</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="Unit Price Scenario Input">
+				<doc>DEFINITION: 	Unit prices for waste-to-energy fuels, on GGE basis, used by simulation
+			
+UNITS: 	USD/gal
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Scenario input
+			
+COMMENTS: Scenario multiplier applies after time threshold has been met during simulation
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>IF TIME &lt; Scenario_Multiplier_Time_Threshold THEN scenario_input_unit_price ELSE scenario_input_unit_price * Unit_Price_Scenario_Multiplier</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="PTC REC Scenario Input">
+				<doc>DEFINITION: 	Production tax credit, on GGE basis, used by simulation
+			
+UNITS: 	USD/gal	
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Scenario input
+			
+COMMENTS: Scenario multiplier applies after time threshold has been met during simulation
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>IF TIME &lt; Scenario_Multiplier_Time_Threshold THEN PTC_REC_Scenario ELSE PTC_REC_Scenario * PTC_REC_Scenario_Multiplier</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="PTC REC Scenario Multiplier">
+				<doc>DEFINITION: 	sensitivity input for PTC REC
+				
+UNITS: unitless		
+				
+TYPE: 	Array 	 | Constant 	 | Scenario input
+
+				
+COMMENTS: 				</doc>
+				<eqn>1.0</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="RGS Scenario Input">
+				<doc>DEFINITION: 	Renewable gas standard, on GGE basis, used by simulation
+			
+UNITS: 	USD/gal
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Scenario input
+			
+COMMENTS: Scenario multiplier applies after time threshold has been met during simulation</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>IF TIME &lt; Scenario_Multiplier_Time_Threshold THEN RGS_Scenario ELSE RGS_Scenario * RGS_Scenario_Multiplier</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="RGS Scenario Multiplier">
+				<doc>DEFINITION: 	sensitivity input for RGS scenario
+				
+UNITS: 	unitless	
+				
+TYPE: 	Array 	 | Constant 	 | Scenario input
+
+				
+COMMENTS: 				</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>1</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="RIN Scenario Multiplier">
+				<doc>DEFINITION: 	sensitivity input for RIN price Scenario
+				
+UNITS: 	unitless	
+				
+TYPE: 	Scalar 	 | Constant 	 | Scenario input
+
+				
+COMMENTS: 				</doc>
+				<eqn>1</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="RIN Scenario Input">
+				<doc>DEFINITION: 	RIN value, on nominal basis, used by simulation
+			
+UNITS: 	USD/gal
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Scenario input
+			
+COMMENTS: Scenario multiplier applies after time threshold has been met during simulation</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>IF TIME &lt; Scenario_Multiplier_Time_Threshold THEN RIN_Scenario * Rins_Active ELSE RIN_Scenario * RIN_Scenario_Multiplier * Rins_Active</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="conversion efficiencies" access="output">
+				<doc>DEFINITION: 	Conversion efficiencies of waste-to-energy pathways		
+			
+UNITS: Unitless
+			
+TYPE: 	Array 	 | Constant 	 | Technoeconomic input | Module Interface
+			
+COMMENTS: 			
+BC, TC, and FT fuels need to be updated.
+
+Other data entries are based on data.
+
+Process efficiency for CNG and PNG are estimated losses due to leakage etc.
+
+CHP data from EPA&apos;s Catalog of CHP Technologies https://www.epa.gov/sites/production/files/2015-07/documents/catalog_of_chp_technologies.pdf, pg. 3-7. </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0.37</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0.73</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0.73</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0.93</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0.66</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>Unitless</units>
+			</aux>
+			<aux name="Gas Conversion Process" access="output">
+				<doc>DEFINITION: 	Flags used to identify gas conversion processes		
+			
+UNITS: unitless
+			
+TYPE: 	Array 	 | Constant 	 | Technoeconomic input | Module Interface | Module Interface
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="solids energy density wastewater" access="output">
+				<doc>DEFINITION: 	energy density of wastewater		
+			
+UNITS: 	(million*BTU)/Ton
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input 
+			
+COMMENTS: 	value used depends on user decision to use PNNL data		
+
+PNNL 2016 HTL Design Report. Table 6, pg. 10. 
+ 
+Old data from Phyllis Database. Ref number 2147 Sewege sludge
+HHV as received = 2.88 MJ/kg
+HHV dry = 12.86 MJ/kg
+HHV dry ash-free = 20.87 MJ/kg</doc>
+				<eqn>IF USE_PNNL_HTL_TEA = 1 THEN 16.13 ELSE 12</eqn>
+				<units>(million*BTU)/Ton</units>
+			</aux>
+			<aux name="solids energy density manure" access="output">
+				<doc>DEFINITION: 	energy density of manure			
+				
+UNITS: 	(million*BTU)/Ton
+				
+TYPE: 	Scalar 	 | Constant 	 | Data input 	 | Module Interface
+				
+COMMENTS: 				
+Chandra S. Theegala, Jason S. Midgett, Hydrothermal liquefaction of separated dairy manure for production of bio-oils with simultaneous waste treatment, In Bioresource Technology, Volume 107, 2012, Pages 456-463, ISSN 0960-8524, https://doi.org/10.1016/j.biortech.2011.12.061. (converted 11.9 MJ per kg to 10.2 mmBtu/ton) 
+
+
+</doc>
+				<eqn>10.2</eqn>
+				<units>(million*BTU)/Ton</units>
+			</aux>
+			<aux name="Exogenous yrly energy prodn by\nconfig">
+				<doc>DEFINITION: 	scenario used to set exogenous (i.e., external to what&apos;s represented in the model) commercial scale experience
+			
+UNITS: 	GJ/yr
+			
+TYPE: 	Array 	 | Constant 	 | Scenario input
+			
+COMMENTS: 	relevant only for immature conversion pathways		
+
+Zero for commercial scale because we added PC experience to model
+
+
+Based on HTL design report and operation of Genifuel plant in Vancover (projected to start in 2018 and to operate at a level equal to 30,000 people) 
+http://www.genifuel.com/text/Genifuel-LIFT%20Slides-Innovation%20Pavilion%202016.pdf
+
+From HTL design report: 
+&quot;The modeled HTL plant processes 100 dry ton/day (92.4 ton/day dry, ash-free basis) of sludge in a slurry (water + solids) containing 12% total solids (11.2% ash-free solids). For perspective, a WWTP producing 100 dry ton/day of primary and secondary sludge mixture would treat roughly 133 million gal/day of wastewater (Shammas and Wang 2008) and would serve an approximate population of 1.7 million (EPA 2015a). A feedstock credit of $-16.20/wet ton ($-46/dry ton at 35% solids; $-50/ton dry, ash-free basis) is included in the analysis to account for the fact that WWTPs currently pay to have their sludge disposed.&quot;
+
+1.7 million person plant generates 369,265 millionBtu/yr
+30,000 person plant ~6,516 million Btu/yr
+
+6,516 million Btu/yr = 6875 GJ/yr
+
+assume operational for 5 years</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<gf type="discrete">
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="400000"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="CF">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="Elec">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="CNG">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="PNG">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="BCFuel">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="TCFUEL">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="HTL">
+					<gf type="discrete">
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="10000"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="CHP">
+					<gf>
+						<xscale min="2015" max="2040"/>
+						<yscale min="0" max="100"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="Other">
+					<gf>
+						<xscale min="0" max="2"/>
+						<yscale min="0" max="2"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<eqn>TIME</eqn>
+				<units>GJ/yr</units>
+			</aux>
+			<aux name="Exogenous yrly energy Multiplier">
+				<doc>DEFINITION: 	sensitivity input for commercial exogenous experience scenario
+				
+UNITS: 	unitless			
+				
+TYPE: 	Array 	 | Constant 	 | Scenario input
+
+				
+COMMENTS: 				</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="Mature PC multipliers">
+				<doc>DEFINITION: 	When have fully mature commercial industry, multiplier of 1 implies you get mature industry values for technology attributes.		
+			
+UNITS: 	Unitless
+			
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 			
+
+
+use p(success) slot to capture op cost maturity input</doc>
+				<dimensions>
+					<dim name="TechAttribute"/>
+				</dimensions>
+				<element subscript="ProcessYield">
+					<eqn>0.85</eqn>
+				</element>
+				<element subscript="PSuccess">
+					<eqn>1.5</eqn>
+				</element>
+				<element subscript="InputCap">
+					<eqn>0.8</eqn>
+				</element>
+				<element subscript="CapitalCost">
+					<eqn>1.25</eqn>
+				</element>
+				<element subscript="Risk">
+					<eqn>2.5</eqn>
+				</element>
+				<element subscript="DebtFrac">
+					<eqn>0.5</eqn>
+				</element>
+				<units>Unitless</units>
+			</aux>
+			<stock name="PC Maturity" access="output">
+				<doc>DEFINITION: 	Accumulates pre-commercial-scale maturity	
+				
+UNITS: 	Unitless	
+				
+TYPE: 	Array 	 | Stock	 | Internal Calculation	 | Module Interface
+				
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>Initial_Indices_of_PC_Maturity</eqn>
+				<inflow>PC_learning_logic</inflow>
+				<non_negative/>
+				<units>Unitless</units>
+			</stock>
+			<flow name="PC learning logic">
+				<doc>DEFINITION: 	Learning curve logic calculates flow that increases  maturity. Applies quantity (1-progress ratio) to maturity gap and rate of doubling, to generate increase in maturity. Each doubling of cumulative output drives a constant percentage change in the gap between &quot;current&quot; and mature index of maturity.		
+			
+UNITS: 	Per Year	
+			
+TYPE: 	Array 	 | Flow	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>rate_of_doubling_PC_experience * PC_maturity_gap * (1 - PC_Progress_Ratios  * ProgRatio_Multiplier) + PC_Maturity_Pulse_Logic</eqn>
+				<non_negative/>
+				<units>Per Year</units>
+			</flow>
+			<aux name="PC maturity gap">
+				<doc>DEFINITION: 	Difference between maximum maturity (1) and actual maturity at pre-commercial scale		
+			
+UNITS: 	Unitless	
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>1 - PC_Maturity</eqn>
+				<units>Unitless</units>
+			</aux>
+			<stock name="Number of Doublings\nof PC Experience">
+				<doc>DEFINITION: 	Tracks the cumulative number of doublings of pre-commercial-scale experience 		
+			
+UNITS: 	Doubling
+			
+TYPE: 	Array 	 | Stock	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>0</eqn>
+				<inflow>rate_of_doubling_PC_experience</inflow>
+				<non_negative/>
+				<units>Doubling</units>
+			</stock>
+			<stock name="Cumulative PC Experience">
+				<doc>DEFINITION: 	cumulative hours of pre-commercial experience that have been logged by different pathways			
+				
+UNITS: 	hour		
+				
+TYPE: 	TYPE: 	Array 	 | Stock	 | Internal Calculation
+
+				
+COMMENTS: 				
+
+
+ </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>Min_PC_experience_for_learning</eqn>
+				<inflow>logging_PC_experience</inflow>
+				<non_negative/>
+				<units>hour</units>
+			</stock>
+			<flow name="logging PC experience">
+				<doc>DEFINITION: 	accrual of experience at pre-commercial scale		
+			
+UNITS: 	hr/yr		
+			
+TYPE: 	Array 	 | Flow	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>exogenous_yrly_demo_signal * exogenous_yrly_demo_quantity</eqn>
+				<non_negative/>
+				<units>hr/yr</units>
+			</flow>
+			<flow name="rate of doubling\nPC experience">
+				<doc>DEFINITION: 	Translates fractional rate of growth in experience to yearly rate of doubling. Rate of doubling drives learning logic.		
+			
+UNITS: 	Doubling/Years
+			
+TYPE: 	Array 	 | Flow	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>frac_rate_of_growth_PC_experience/doubling_factor</eqn>
+				<non_negative/>
+				<units>Doubling/Years</units>
+			</flow>
+			<aux name="frac rate of growth\nPC experience" flow_concept="true">
+				<doc>DEFINITION: 	Calculates (fractional) rate of growth in pre-commercial-scale experience. Used as input to rate of doubling calculation.		
+			
+UNITS: 	Per Year	
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Internal Calculation
+			
+COMMENTS: 			
+IF/THEN/ELSE construct prevents division by zero, unstable results when cumulative experience is &lt; experience threshold
+
+ </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>IF Cumulative_PC_Experience &gt;= Min_PC_experience_for_learning
+THEN logging_PC_experience/Cumulative_PC_Experience
+ELSE 0</eqn>
+				<units>Per Year</units>
+			</aux>
+			<aux name="Min PC experience\nfor learning">
+				<doc>DEFINITION: 	sets minimum level of pre-commercial (demo-scale) experience before learning begins to accrue		
+			
+UNITS: 	hr
+			
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>1000</eqn>
+				<units>hr</units>
+			</aux>
+			<aux name="PC Progress Ratios">
+				<doc>DEFINITION: 	progress ratio for pre-commercial-scale learning		
+			
+UNITS: 	1/Doubling
+			
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0.8</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>1/Doubling</units>
+			</aux>
+			<aux name="Exogenous yrly PC multiplier">
+				<doc>DEFINITION: 	sensitivity input for pre-commercial exogenous experience scenario
+				
+UNITS: 	unitless	
+				
+TYPE: 	Array 	 | Constant 	 | Scenario input
+
+				
+COMMENTS: 				</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="Exogenous yrly demo experience">
+				<doc>DEFINITION: 	scenario used to set exogenous (i.e., external to what&apos;s represented in the model) demo-scale experience		
+			
+UNITS: 	hr/yr
+			
+TYPE: 	Array 	 | Constant 	 | Scenario input
+			
+COMMENTS: 	relevant only for immature conversion pathways		
+
+
+
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>3942</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>hr/yr</units>
+			</aux>
+			<aux name="Initial Indices of\nPC Maturity">
+				<doc>DEFINITION: 	Initial level of pre-commercial technology maturity		
+			
+UNITS: 	Unitless
+			
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="PC Multipliers">
+				<doc>DEFINITION: 	et of multipliers describing maturity for technical attributes, for each represented technology. Multipliers gravitate toward value of 1 as industry matures. Multipliers are calculated as weighted avg of mature industry vs demo industry. dynamic weighting factor is given by indices of commercial maturity.		
+			
+UNITS: 	Unitless	
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Internal Calculation
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+					<dim name="TechAttribute"/>
+				</dimensions>
+				<eqn>(Mature_PC_multipliers[TechAttribute] * multiplier_maturity_all_factors_arrayed[TechAttribute]) * PC_Maturity[WTEConfig] +
+(Early_Industry_Multipliers[TechAttribute] * multiplier_maturity_all_factors_arrayed[TechAttribute]) * (1-PC_Maturity[WTEConfig])</eqn>
+				<units>Unitless</units>
+			</aux>
+			<aux name="scenario input unit price">
+				<doc>DEFINITION: 	Determines which price scenario is used in simulation
+			
+UNITS: 	USD/gal	
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Scenario input
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>AEO_Reference * Use_AEO_Reference +
+AEO_High * Use_AEO_Hi +
+AEO_Low * Use_AEO_Low +
+User_Defined * Use_User_Defined</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="Use AEO Hi">
+				<doc>DEFINITION: 	Based on AEO selector setting, sets model to use AEO &quot;high&quot; scenarios		
+			
+UNITS: 	Unitless	
+			
+TYPE: 	Scalar 	 | Instantaneous Equation	 | Scenario input
+			
+COMMENTS: 			
+</doc>
+				<eqn>IF integerized_AEO_Selector = 3 THEN 1 ELSE 0</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="Use AEO Low">
+				<doc>DEFINITION: 	Based on AEO selector setting, sets model to use AEO &quot;low&quot; scenarios		
+			
+UNITS: 	Unitless
+			
+TYPE: 	Scalar 	 | Instantaneous Equation	 | Scenario input
+			
+COMMENTS: 			
+</doc>
+				<eqn>IF integerized_AEO_Selector = 2 THEN 1 ELSE 0</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="Use AEO Reference">
+				<doc>DEFINITION: 	Based on AEO selector setting, sets model to use AEO reference scenarios		
+			
+UNITS: 	Unitless
+			
+TYPE: 	Scalar 	 | Instantaneous Equation	 | Scenario input
+			
+COMMENTS: 			
+</doc>
+				<eqn>IF integerized_AEO_Selector = 1 THEN 1 ELSE 0</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="Use User Defined">
+				<doc>DEFINITION: 	Based on AEO selector setting, sets model to use arbitrary user-defined scenarios
+			
+UNITS: 	Unitless	
+			
+TYPE: 	Scalar 	 | Instantaneous Equation	 | Scenario input
+			
+COMMENTS: 			
+</doc>
+				<eqn>IF integerized_AEO_Selector = 4 THEN 1 ELSE 0</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="AEO Reference">
+				<doc>DEFINITION: 	Data for AEO &quot;Reference&quot; price scenarios		
+			
+UNITS: 	USD/gal
+			
+TYPE: 	Array 	 | Graphical Function	 | Scenario input
+			
+COMMENTS: 			
+SOURCE: 2018 EIA AEO, EIA STEO, EIA Electric Power Monthly, EIA-857, EIA-910; data for CHP assumes 64% of energy is converted to heat and 36% is converted to electricity (0.64*retail + 0.36*wholesale) 
+Data for CNG are for retail prices and data for HTL came from the MFSP value in the 2016 PNNL HTL Design Report </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="CF">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="Elec">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="3"/>
+						<ypts>2.197249099,2.197249099,2.107602718,2.116340117,2.096864213,2.131372002,2.095731556,2.065267767,2.048377327,2.037840685,2.046467885,2.032902287,2.027215075,2.019256146,2.013486032,2.007566964,2.00387614,1.991608666,1.977876927,1.964025216,1.952759643,1.948610836,1.94244441,1.941734014,1.940552492,1.935345505,1.928063272,1.919463369,1.911666874,1.90515199,1.898318978,1.887471959,1.882255536,1.902184368,1.904855767,1.895425833</ypts>
+					</gf>
+				</element>
+				<element subscript="CNG">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="4"/>
+						<ypts>2.0956592920354,2.0956592920354,2.34758053097345,2.42759469026549,2.4578185840708,2.79160619469027,2.9315796460177,2.97914336283186,3.02625221238938,3.10606991150443,3.14073628318584,3.15263716814159,3.18862389380531,3.22743451327434,3.27305663716814,3.30045044247788,3.34540884955752,3.35952831858407,3.3944185840708,3.43341681415929,3.45201946902655,3.46687345132743,3.52471150442478,3.5427814159292,3.56620973451327,3.58746283185841,3.61026725663717,3.61058584070796,3.61452123893805,3.61321061946903,3.62062920353982,3.60989380530973,3.62124247787611,3.62974955752212,3.60953362831858,3.61535398230089</ypts>
+					</gf>
+				</element>
+				<element subscript="PNG">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="3"/>
+						<ypts>0.6231536244,0.6231536244,0.70833400893,0.70895173536,0.74346533064,0.77814413901,0.77956383474,0.7860880836,0.80577587385,0.82806827256,0.84374671059,0.84824107506,0.85375415061,0.85221990549,0.86252737347,0.86197254417,0.86237538237,0.86495762466,0.8652816252,0.86598955773,0.86627895867,0.87818505174,0.87970978197,0.88715240307,0.89223854427,0.89483647995,0.89922123783,0.90704025315,0.91108259856,0.9182338416,0.92532947814,0.93188153025,0.93860163756,0.94838961726,0.9577502919,0.96767642286</ypts>
+					</gf>
+				</element>
+				<element subscript="BCFuel">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>2.302418,2.302418,2.504297,2.467989,2.531891,2.882353,3.053216,3.12757,3.184149,3.251787,3.24548,3.244453,3.264498,3.292029,3.326426,3.339397,3.381517,3.395135,3.412454,3.441888,3.455014,3.462134,3.513765,3.52723,3.547295,3.571349,3.589921,3.604866,3.612952,3.621115,3.630023,3.618009,3.636545,3.656587,3.662659,3.673712</ypts>
+					</gf>
+				</element>
+				<element subscript="TCFUEL">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>2.302418,2.302418,2.504297,2.467989,2.531891,2.882353,3.053216,3.12757,3.184149,3.251787,3.24548,3.244453,3.264498,3.292029,3.326426,3.339397,3.381517,3.395135,3.412454,3.441888,3.455014,3.462134,3.513765,3.52723,3.547295,3.571349,3.589921,3.604866,3.612952,3.621115,3.630023,3.618009,3.636545,3.656587,3.662659,3.673712</ypts>
+					</gf>
+				</element>
+				<element subscript="HTL">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="5"/>
+						<ypts>1.055896823,1.055896823,1.3335832096,1.3008747733,1.4190916653,1.7992866082,1.9846497469,2.0703003153,2.131107308,2.1620922075,2.2119281966,2.239992052,2.2768625639,2.3135631485,2.3576013537,2.3831564882,2.4273124885,2.4544462495,2.4883985956,2.5221871476,2.5529099873,2.5669338181,2.6309411576,2.6620968452,2.6845767717,2.7128575756,2.7440041979,2.759521705,2.7786530926,2.804261785,2.8261264547,2.8347057255,2.8534523086,2.8796009647,2.9033834968,2.9209964063</ypts>
+					</gf>
+				</element>
+				<element subscript="CHP">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="4"/>
+						<ypts>1.81530156349333,1.81530156349333,1.86837340352667,1.86326493491333,1.8998822318,1.95815866726667,1.9697540318,1.99100125394,2.02101057204,2.04631136386667,2.07130636185333,2.07505290826,2.08251615779333,2.08170172501333,2.09314630936667,2.09341867866,2.09676194537333,2.09637238555333,2.0954790453,2.09379551068,2.09145552104667,2.09721079274,2.09770518972,2.10124496413333,2.10244774343333,2.10236677262667,2.10387907499333,2.10710953210667,2.10491254847333,2.10382618472,2.10558835986,2.10388475534667,2.10559180906667,2.11052211658667,2.11393719078667,2.11080649280667</ypts>
+					</gf>
+				</element>
+				<element subscript="Other">
+					<gf>
+						<xscale min="0" max="2"/>
+						<yscale min="0" max="2"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<eqn>TIME</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="AEO High">
+				<doc>DEFINITION: 	Data for AEO &quot;High&quot; price scenarios		
+			
+UNITS: 	USD/gal
+			
+TYPE: 	Array 	 | Graphical Function	 | Scenario input
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="CF">
+					<gf type="discrete">
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="Elec">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="5"/>
+						<ypts>2.197247751,2.197247751,2.108208981,2.137962374,2.113557171,2.153851924,2.122461722,2.076711276,2.043404555,2.026489851,2.017453533,2.008928781,2.006404988,2.007834542,2.012152523,2.009713654,2.015780665,2.019830731,2.011913927,2.009267803,2.00326954,2.001732146,1.992828943,1.989606549,1.99735519,2.00759325,2.003655405,1.975235858,1.971364065,1.996673439,2.004629335,1.992423195,1.996562566,2.000820561,2.001697435,2.00555103</ypts>
+					</gf>
+				</element>
+				<element subscript="CNG">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="8"/>
+						<ypts>2.09602566371681,2.09602566371681,2.34796725663717,2.97437787610619,3.55049203539823,3.93191946902655,4.31799911504425,4.47390884955752,4.58152123893805,4.75983539823009,4.89399469026549,4.98373805309735,5.15028495575221,5.1889592920354,5.31539115044248,5.35248407079646,5.40914336283186,5.46082743362832,5.49610442477876,5.58054513274336,5.61036017699115,5.65784955752212,5.67637610619469,5.72775309734513,5.79843274336283,5.81329646017699,5.87105309734513,5.9260592920354,5.98019911504425,5.98129911504425,6.01120619469027,6.05168584070797,6.0958185840708,6.14070973451327,6.17818053097345,6.21659646017699</ypts>
+					</gf>
+				</element>
+				<element subscript="PNG">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="2"/>
+						<ypts>0.62315313012,0.62315313012,0.70809008175,0.7071206751,0.73696554864,0.77899615416,0.77187802788,0.76732793334,0.77513150241,0.79946750178,0.81736019064,0.83405585691,0.85411682856,0.86832280647,0.87703659216,0.88278049647,0.89844633036,0.90913637106,0.91955468133,0.93371209623,0.93958253622,0.94806153891,0.94970798559,0.957692214,0.98045294301,0.96919621029,0.99329816808,0.98534520288,1.00760201343,1.02448068687,1.03662811215,1.04427758943,1.05110680905,1.05898402584,1.06426837332,1.07065311165</ypts>
+					</gf>
+				</element>
+				<element subscript="BCFuel">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>2.302419,2.302419,2.504295,3.07598,3.610654,3.995836,4.414255,4.587756,4.724551,4.877098,4.965235,5.034536,5.185757,5.207951,5.30901,5.334882,5.336617,5.321385,5.348793,5.423476,5.461055,5.506664,5.523691,5.564676,5.617805,5.650234,5.711071,5.755161,5.804588,5.779758,5.802886,5.818309,5.839992,5.883143,5.915074,5.951257</ypts>
+					</gf>
+				</element>
+				<element subscript="TCFUEL">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>2.302419,2.302419,2.504295,3.07598,3.610654,3.995836,4.414255,4.587756,4.724551,4.877098,4.965235,5.034536,5.185757,5.207951,5.30901,5.334882,5.336617,5.321385,5.348793,5.423476,5.461055,5.506664,5.523691,5.564676,5.617805,5.650234,5.711071,5.755161,5.804588,5.779758,5.802886,5.818309,5.839992,5.883143,5.915074,5.951257</ypts>
+					</gf>
+				</element>
+				<element subscript="HTL">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="8"/>
+						<ypts>1.055896823,1.055896823,1.3335832096,2.0399001142,2.7295444795,3.148188238,3.6166495053,3.8244492884,3.9896206146,4.1367115093,4.262437079,4.3492956457,4.5198013226,4.5778734192,4.7492164393,4.7942276175,4.8685211404,4.9392305073,5.0009117769,5.0991027756,5.1829157243,5.2483408014,5.2888582808,5.362719978,5.4469125933,5.4912986693,5.575937448,5.6752305397,5.7293642342,5.7240844905,5.7556735909,5.8094481435,5.8556361429,5.9217626913,5.9579851015,6.0065923524</ypts>
+					</gf>
+				</element>
+				<element subscript="CHP">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="6"/>
+						<ypts>1.81530148111333,1.81530148111333,1.86860014462,1.86773863422667,1.91082835754667,1.9897980165,1.99538610398667,2.00599553869333,2.01211227939333,2.03578298634,2.04808622736667,2.06466710034667,2.07854686257333,2.08894768543333,2.10090890889333,2.10629530600667,2.12356521372667,2.13273706982667,2.13744224403333,2.14703396092,2.14793971957333,2.15021571886667,2.14659748602,2.14862199637333,2.16050498286,2.15614072586,2.17107521084,2.15966306028667,2.16881738128667,2.18706287355333,2.19999321704,2.20204132756667,2.20662216346,2.21191949702,2.21346457337333,2.2124164384</ypts>
+					</gf>
+				</element>
+				<element subscript="Other">
+					<gf>
+						<xscale min="0" max="2"/>
+						<yscale min="0" max="2"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<eqn>TIME</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="AEO Low">
+				<doc>DEFINITION: 	Data for AEO &quot;Low&quot; price scenarios		
+			
+UNITS: 	USD/gal	
+			
+TYPE: 	Array 	 | Graphical Function	 | Scenario input
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="10"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="CF">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="10"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="Elec">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="10"/>
+						<ypts>2.197247414,2.197247414,2.108560472,2.074378899,2.056027901,2.076707569,2.047530446,2.018172017,2.012372584,2.003132044,1.989179233,1.981965748,1.972390567,1.968648182,1.966003406,1.957807566,1.951482076,1.946256891,1.936037029,1.92205254,1.910018607,1.903371956,1.899735052,1.898244501,1.896280802,1.892722756,1.887423768,1.881975826,1.870403246,1.867725107,1.871187445,1.878820158,1.883462333,1.88509375,1.887388046,1.892376657</ypts>
+					</gf>
+				</element>
+				<element subscript="CNG">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="10"/>
+						<ypts>2.09570973451327,2.09570973451327,2.34751681415929,1.86779734513274,1.8359,1.83740442477876,1.89205575221239,1.90158495575221,1.9440814159292,1.95853982300885,1.96689115044248,1.95692212389381,1.97806991150443,1.99563451327434,2.01454955752212,2.02851150442478,2.05209469026549,2.05023451327434,2.06186017699115,2.07703008849558,2.09156371681416,2.1035185840708,2.11419469026549,2.12792920353982,2.14682477876106,2.14904424778761,2.16368407079646,2.17424867256637,2.17801327433628,2.19006017699115,2.2064,2.2221017699115,2.24437168141593,2.25599203539823,2.26134247787611,2.26458230088496</ypts>
+					</gf>
+				</element>
+				<element subscript="PNG">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="10"/>
+						<ypts>0.62315461296,0.62315461296,0.70763484987,0.69097489533,0.71832439629,0.75774804552,0.76580950518,0.77243434002,0.79382999124,0.80110838781,0.81107369046,0.81826670016,0.81878161635,0.82347245712,0.83174275008,0.83308496742,0.83635042824,0.84052301643,0.84495139452,0.84885151086,0.84989580093,0.85927822389,0.86374639152,0.87015745026,0.87135669711,0.87710616207,0.88341873552,0.88953075486,0.89347992849,0.90286235145,0.91075328451,0.91644862581,0.92411602074,0.93232638225,0.93776506866,0.94590697239</ypts>
+					</gf>
+				</element>
+				<element subscript="BCFuel">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="10"/>
+						<ypts>2.302418,2.302418,2.504301,1.915301,1.962951,2.033911,2.107982,2.119484,2.198289,2.194311,2.181371,2.163607,2.178881,2.194973,2.185067,2.189138,2.202788,2.193644,2.203917,2.21337,2.222568,2.23445,2.244617,2.256663,2.275809,2.280293,2.294614,2.301526,2.30808,2.322417,2.339813,2.357601,2.367374,2.382626,2.39016,2.410606</ypts>
+					</gf>
+				</element>
+				<element subscript="TCFUEL">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="10"/>
+						<ypts>2.302418,2.302418,2.504301,1.915301,1.962951,2.033911,2.107982,2.119484,2.198289,2.194311,2.181371,2.163607,2.178881,2.194973,2.185067,2.189138,2.202788,2.193644,2.203917,2.21337,2.222568,2.23445,2.244617,2.256663,2.275809,2.280293,2.294614,2.301526,2.30808,2.322417,2.339813,2.357601,2.367374,2.382626,2.39016,2.410606</ypts>
+					</gf>
+				</element>
+				<element subscript="HTL">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="10"/>
+						<ypts>1.055896823,1.055896823,1.3335832096,0.6157449812,0.6963735617,0.7597025908,0.8388181001,0.8464624345,0.8548227124,0.8612018322,0.8705941286,0.8657091155,0.8920279141,0.9046223058,0.9160347653,0.9314403146,0.9613522807,0.9726029098,0.9923440666,1.0100461227,1.0274957761,1.0484616361,1.0653213456,1.0844435065,1.1069350538,1.1231445634,1.1303399637,1.1431219291,1.1549639547,1.1741775487,1.1983985777,1.2219294065,1.2432949467,1.2672921677,1.2796199535,1.2987149454</ypts>
+					</gf>
+				</element>
+				<element subscript="CHP">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="10"/>
+						<ypts>1.81530148111333,1.81530148111333,1.86853561286,1.84865002093333,1.87498126749333,1.91974406145333,1.93385828086667,1.95900530349333,2.00735599904,2.01668385396667,2.02650871201333,2.03828463570667,2.04142682604,2.04721939038,2.05367934812,2.05630712562,2.06169386419333,2.06438392116,2.06803502871333,2.06906238940667,2.06834399736667,2.07200115448,2.07414322558,2.07837261898667,2.07883379536667,2.08116319296667,2.08447650254,2.08662019392667,2.08477370521333,2.08782092062667,2.09385536397333,2.09893277666,2.10534686855333,2.10455852948667,2.10510759492,2.10812734532</ypts>
+					</gf>
+				</element>
+				<element subscript="Other">
+					<gf>
+						<xscale min="0" max="2"/>
+						<yscale min="0" max="2"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<eqn>TIME</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="User Defined">
+				<doc>DEFINITION: 	Data for user defined price scenarios		
+			
+UNITS: 	USD/gal
+			
+TYPE: 	Array 	 | Graphical Function	 | Scenario input
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50</ypts>
+					</gf>
+				</element>
+				<element subscript="CF">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50</ypts>
+					</gf>
+				</element>
+				<element subscript="Elec">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50</ypts>
+					</gf>
+				</element>
+				<element subscript="CNG">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50</ypts>
+					</gf>
+				</element>
+				<element subscript="PNG">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50</ypts>
+					</gf>
+				</element>
+				<element subscript="BCFuel">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50</ypts>
+					</gf>
+				</element>
+				<element subscript="TCFUEL">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50</ypts>
+					</gf>
+				</element>
+				<element subscript="HTL">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50</ypts>
+					</gf>
+				</element>
+				<element subscript="CHP">
+					<gf>
+						<xscale min="2015" max="2050"/>
+						<yscale min="0" max="300"/>
+						<ypts>50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50</ypts>
+					</gf>
+				</element>
+				<element subscript="Other">
+					<gf>
+						<xscale min="0" max="2"/>
+						<yscale min="0" max="2"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<eqn>TIME</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="LF yrly energy prodn by\nconfig 1" access="input">
+				<doc>DEFINITION: module interface variable
+
+UNITS: gj/yr
+
+TYPE: | Module Interface
+
+COMMENTS: </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>0</eqn>
+				<units>GJ/yr</units>
+			</aux>
+			<aux name="CAFO yrly energy prodn by\nconfig 1" access="input">
+				<doc>DEFINITION: module interface variable
+
+UNITS: gj/yr
+
+TYPE: | Module Interface
+
+COMMENTS: </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>0</eqn>
+				<units>GJ/yr</units>
+			</aux>
+			<aux name="WWTP yrly energy prodn by\nconfig 1" access="input">
+				<doc>DEFINITION: module interface variable
+
+UNITS: gj/yr
+
+TYPE: | Module Interface
+
+COMMENTS: </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>0</eqn>
+				<units>GJ/yr</units>
+			</aux>
+			<aux name="dwell time multiplier" access="output">
+				<doc>DEFINITION: 	sensitivity input for development dwell time			
+				
+UNITS: 	unitless	
+				
+TYPE: 	Scalar 	 | Constant 	 | Assumed value(s)	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<eqn>0.5</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="AEO Selector">
+				<doc>DEFINITION: 	scenario selector to choose among different price scenarios for different WTE configurations		
+			
+UNITS: 	Unitless
+			
+TYPE: 	Scalar 	 | Constant 	 | Scenario input
+			
+COMMENTS: 			
+Only ONE of the Use AEO Oil switches should be active in a given run
+</doc>
+				<eqn>1</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="Exogenous yrly demo start">
+				<doc>DEFINITION: 	start time for exogenous (i.e., external to what&apos;s represented in the model) demo-scale experience		
+			
+UNITS: 	yr
+
+TYPE: 	Scalar 	 | Constant 	 | Scenario input
+			
+COMMENTS: 	relevant only for immature conversion pathways		
+</doc>
+				<eqn>2018</eqn>
+				<units>yr</units>
+			</aux>
+			<aux name="Exogenous yrly demo duration">
+				<doc>DEFINITION: 	duration for exogenous (i.e., external to what&apos;s represented in the model) demo-scale experience		
+			
+UNITS: 	yr	
+			
+TYPE: 	Scalar 	 | Constant 	 | Scenario input
+			
+COMMENTS: 	relevant only for immature conversion pathways		
+</doc>
+				<eqn>4</eqn>
+				<units>yr</units>
+			</aux>
+			<aux name="exogenous yrly demo quantity" flow_concept="true">
+				<doc>DEFINITION: 	Quantity of exogenous pre-commercial experience
+			
+UNITS: 	hr/yr
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Internal Calculation
+			
+COMMENTS: 			
+ </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>Exogenous_yrly_demo_experience * Exogenous_yrly_PC_multiplier</eqn>
+				<units>hr/yr</units>
+			</aux>
+			<aux name="exogenous yrly demo signal" flow_concept="true">
+				<doc>DEFINITION: 	Flag used to indicate that exogenous pre-commercial experience is being logged		
+			
+UNITS: 	unitless
+			
+TYPE: 	Scalar 	 | Instantaneous Equation	 | Internal Calculation
+			
+COMMENTS: 			
+
+ </doc>
+				<eqn>IF TIME &gt;= Exogenous_yrly_demo_start AND TIME &lt; (Exogenous_yrly_demo_start + Exogenous_yrly_demo_duration) THEN 1 ELSE 0</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="LCFS Multiplier Global" access="output" isee:autocreated="true">
+				<doc>DEFINITION: 	sensitivity input for LCFS scenarios
+				
+UNITS: 	unitless		
+				
+TYPE: 	Array 	 | Constant 	 | Scenario input
+
+				
+COMMENTS: 				</doc>
+				<eqn>1</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="integerized AEO Selector">
+				<doc>DEFINITION: 	integerizes the scenario selector to choose among different price scenarios for different WTE configurations		
+			
+UNITS: 	Unitless	
+			
+TYPE: 	TYPE: 	Scalar 	 | Instantaneous Equation
+
+			
+COMMENTS: 			
+</doc>
+				<eqn>INT(AEO_Selector)</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="Scenario Multiplier Time Threshold">
+				<doc>DEFINITION: 	Sets time at which scenario multipliers become &quot;active&quot; during simulation		
+			
+UNITS: 	Years
+			
+TYPE: 	Scalar 	 | Constant 	 | Scenario input
+			
+COMMENTS: 			
+</doc>
+				<eqn>2019</eqn>
+				<units>Years</units>
+			</aux>
+			<aux name="Rins Active">
+				<doc>DEFINITION: 	Flags indicating which pathways are eligible for RINs		
+			
+UNITS: 	See units field, below		
+			
+TYPE: 	Array 	 | Constant 	 | Technoeconomic input
+			
+COMMENTS: 			
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="frac POTW solid outflux diverted" access="output">
+				<doc>DEFINITION: 	Portion of WWTP OUTFLUX that is diverted away from landfills			
+				
+UNITS: 	Unitless
+				
+TYPE: 	Array 	 | Constant 	 | Scenario input	 | Module Interface
+				
+COMMENTS: 				
+http://www.biogas-info.co.uk/about/digestate/
+
+90-95% of outflux from AD technologies is digestate, which is marketed as fertilizer and therefore diverted from landfill</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0.95</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0.95</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0.95</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0.95</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>Unitless</units>
+			</aux>
+			<aux name="biosolid diversion unit rev" access="output">
+				<doc>DEFINITION: 	per unit revenues from diversion of biosolids from waste treatment facilities			
+				
+UNITS: 	USD/ton	
+				
+TYPE: 	Scalar 	 | Constant 	 | Data input 	 | Module Interface
+				
+COMMENTS: 				
+Based on EVALUATING THE ECONOMIC FEASIBILITY
+OF ANAEROBIC DIGESTION OF
+KAWANGWARE MARKET WASTE
+by
+JAMES M. ARATI
+B.S., University of Wisconsin- River Falls, 2006
+Thesis, Kansas State University 
+
+
+The true fertilizer price will be determined after doing sample analysis of effluent from the digester once in operation to help determine the exact nutrient content. For the analysis, a conservative price of $25.64 per ton is used, far lower than the price of inorganic fertilizers. The current price for calcium ammonia nitrate chemical fertilizer is $512.82 per ton. A price of $25.64 per ton for fertilizer from the digester is realistic given the rising demand for organic fertilizers at the expense of inorganic fertilizers.</doc>
+				<eqn>26</eqn>
+				<units>USD/ton</units>
+			</aux>
+			<aux name="frac POTW influx to coproduct" access="output">
+				<doc>DEFINITION: 	Assumed portion of WWTP influx that is used for coprocesses, and thus unavailable for waste-to-energy conversion			
+				
+UNITS: 	Unitless	
+				
+TYPE: 	Array 	 | Constant 	 | Assumed value(s)	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<dimensions>
+					<dim name="WWTPSize"/>
+				</dimensions>
+				<eqn>0</eqn>
+				<units>Unitless</units>
+			</aux>
+			<aux name="POTW coproduct unit rev" access="output">
+				<doc>DEFINITION: 	Unit revenue from coproduct sales			
+				
+UNITS: 	USD/gallon		
+				
+TYPE: 	Scalar 	 | Constant 	 | Assumed value(s)	 | Module Interface
+				
+COMMENTS: 				
+
+</doc>
+				<eqn>0</eqn>
+				<units>USD/gallon</units>
+			</aux>
+			<aux name="one million" access="output">
+				<doc>DEFINITION: 	Conversion factor		
+			
+UNITS: 	1/million	
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input | Module Interface
+			
+COMMENTS: 			
+</doc>
+				<eqn>1000000</eqn>
+				<units>1/million</units>
+			</aux>
+			<aux name="conversion invest flags" access="output">
+				<doc>DEFINITION: 	0-1 flag indicating that waste to energy conversion is installed on facility			
+				
+UNITS: 	Unitless	
+				
+TYPE: 	Array 	 | Constant 	 | Data input 	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>1</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="small only flags" access="output">
+				<doc>DEFINITION: 	0-1 flag indicating small investment scale			
+				
+UNITS: 	Unitless		
+				
+TYPE: 	Array 	 | Constant 	 | Data input 	 | Module Interface
+				
+COMMENTS: 		small implies 25% of potential output from facility		
+</doc>
+				<dimensions>
+					<dim name="InvestScale"/>
+				</dimensions>
+				<element subscript="small">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="medium">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="large">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="med only flags" access="output">
+				<doc>DEFINITION: 	0-1 flag indicating medium investment scale	
+				
+UNITS: 	Unitless
+				
+TYPE: 	Array 	 | Constant 	 | Data input 	 | Module Interface
+				
+COMMENTS: 			medium implies 50% of potential output from facility		
+</doc>
+				<dimensions>
+					<dim name="InvestScale"/>
+				</dimensions>
+				<element subscript="small">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="medium">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="large">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="large only flags" access="output">
+				<doc>DEFINITION: 	0-1 flag indicating large investment scale			
+				
+UNITS: 	Unitless	
+				
+TYPE: 	Array 	 | Constant 	 | Data input 	 | Module Interface
+				
+COMMENTS: 			large implies 100% of potential output from facility			
+</doc>
+				<dimensions>
+					<dim name="InvestScale"/>
+				</dimensions>
+				<element subscript="small">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="medium">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="large">
+					<eqn>1</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="available scales for no WTE" access="output">
+				<doc>DEFINITION: 	0-1 flag setting available scales for facilities with no waste to energy installations present 			
+				
+UNITS: 	Unitless		
+				
+TYPE: 	Array 	 | Constant 	 | Data input 	 | Module Interface
+				
+COMMENTS: 	partial investment flag used to activate 25% and 50% scale installations			
+</doc>
+				<dimensions>
+					<dim name="InvestScale"/>
+				</dimensions>
+				<element subscript="small">
+					<eqn>1 * partial_investment_flag</eqn>
+				</element>
+				<element subscript="medium">
+					<eqn>1 * partial_investment_flag</eqn>
+				</element>
+				<element subscript="large">
+					<eqn>1</eqn>
+				</element>
+				<units>Unitless</units>
+			</aux>
+			<aux name="available scales for 25 or 50" access="output">
+				<doc>DEFINITION: 	0-1 flag setting available scales for investment when 25 or 50% of facility potential output already has waste-to-energy installations			
+				
+UNITS: 	Unitless
+				
+TYPE: 	Array 	 | Constant 	 | Data input 	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<dimensions>
+					<dim name="InvestScale"/>
+				</dimensions>
+				<element subscript="small">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="medium">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="large">
+					<eqn>0</eqn>
+				</element>
+				<units>Unitless</units>
+			</aux>
+			<aux name="available scales for 75" access="output">
+				<doc>DEFINITION: 	0-1 flag setting available scales for investment when75% of facility potential output already has waste-to-energy installations			
+				
+UNITS: 	Unitless		
+				
+TYPE: 	Array 	 | Constant 	 | Data input 	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<dimensions>
+					<dim name="InvestScale"/>
+				</dimensions>
+				<element subscript="small">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="medium">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="large">
+					<eqn>0</eqn>
+				</element>
+				<units>Unitless</units>
+			</aux>
+			<aux name="No WTE Only Flag" access="output">
+				<doc>DEFINITION: 	0-1 flag indicating that no waste to energy conversion (and no capture and flare only)  is installed on facility			
+				
+UNITS: 	Unitless	
+				
+TYPE: 	Array 	 | Constant 	 | Data input 	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="CF Only Flag" access="output">
+				<doc>DEFINITION: 	0-1 flag indicating that capture and flare ONLY  is installed on facility			
+				
+UNITS: 	Unitless	
+				
+TYPE: 	Array 	 | Constant 	 | Data input 	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>1</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<group name="Partial scale flags" run="false">
+				<entity name="available_scales_for_no_WTE"/>
+				<entity name="available_scales_for_25_or_50"/>
+				<entity name="available_scales_for_75"/>
+				<entity name="partial_investment_flag"/>
+				<entity name="conversion_invest_flags"/>
+				<entity name="No_WTE_Only_Flag"/>
+				<entity name="CF_Only_Flag"/>
+				<entity name="small_only_flags"/>
+				<entity name="med_only_flags"/>
+				<entity name="large_only_flags"/>
+				<entity name="WTE_Config_Identity_Matrix"/>
+				<entity name="dummy1"/>
+				<entity name="dummy"/>
+				<entity name="dummy2"/>
+				<entity name="dummy3"/>
+			</group>
+			<aux name="multiplier for\nmaturity all factors">
+				<doc>DEFINITION: 	sensitivity input for pre-commercial maturity multipliers
+				
+UNITS: 	unitless		
+				
+TYPE: 	Scalar 	 | Constant 	 | Scenario input
+
+				
+COMMENTS: 				</doc>
+				<eqn>1</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="multiplier maturity all factors arrayed">
+				<doc>DEFINITION: 	sensitivity input for pre-commercial maturity multipliers
+				
+UNITS: 	unitless		
+				
+TYPE: 	TYPE: 	Array 	 | Instantaneous Equation	 | Internal Calculation
+
+				
+COMMENTS: 	translates constant into arrayed variable. Note use of reciprocal of multiplier for cost and risk factors.</doc>
+				<dimensions>
+					<dim name="TechAttribute"/>
+				</dimensions>
+				<element subscript="ProcessYield">
+					<eqn>multiplier_for_maturity_all_factors</eqn>
+				</element>
+				<element subscript="PSuccess">
+					<eqn>1/multiplier_for_maturity_all_factors</eqn>
+				</element>
+				<element subscript="InputCap">
+					<eqn>multiplier_for_maturity_all_factors</eqn>
+				</element>
+				<element subscript="CapitalCost">
+					<eqn>1/multiplier_for_maturity_all_factors</eqn>
+				</element>
+				<element subscript="Risk">
+					<eqn>1/multiplier_for_maturity_all_factors</eqn>
+				</element>
+				<element subscript="DebtFrac">
+					<eqn>multiplier_for_maturity_all_factors</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="partial investment flag">
+				<doc>DEFINITION: 	0-1 flag used to make partial investment available to the system.	
+				
+UNITS: 	unitless			
+				
+TYPE: 	Scalar 	 | Constant 	 | Data input 	 
+				
+COMMENTS: 				
+</doc>
+				<eqn>1</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="frac CAFO solid\noutflux diverted" access="output">
+				<doc>DEFINITION: 	Portion of WWTP OUTFLUX in California that is diverted away from landfills			
+				
+UNITS: 	Unitless			
+				
+TYPE: 	Array 	 | Constant 	 | Scenario input	 | Module Interface
+				
+COMMENTS: 				
+http://www.biogas-info.co.uk/about/digestate/
+
+90-95% of outflux from AD technologies is digestate, which is marketed as fertilizer and therefore diverted from landfillhttp://www.biogas-info.co.uk/about/digestate/
+
+90-95% of outflux from AD technologies is digestate, which is marketed as fertilizer and therefore diverted from landfill</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0.95</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0.95</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0.95</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0.95</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>Unitless</units>
+			</aux>
+			<aux name="PNNL HTL FCI" access="output">
+				<doc>DEFINITION: 	PNNL TEA data for HTL pathway for FCI			
+				
+UNITS: 	USD		
+				
+TYPE: 	Scalar 	 | Instantaneous Equation 	 | Technoeconomic input	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<eqn>Base_PNNL_HTL_FCI * HTL_FCI_multiplier</eqn>
+				<units>USD</units>
+			</aux>
+			<aux name="PNNL POTW HTL Scale" access="output">
+				<doc>DEFINITION: 	scale factor for using PNNL (vs other) TEA for HTL			
+				
+UNITS: 	million gal per day	
+				
+TYPE: 	Scalar 	 | Constant 	 | Technoeconomic input	 | Module Interface
+				
+COMMENTS: 				</doc>
+				<eqn>110</eqn>
+				<units>million gal per day</units>
+			</aux>
+			<aux name="PNNL scale factor" access="output">
+				<doc>DEFINITION: 	scale factor for using PNNL (vs other) TEA for HTL			
+				
+UNITS: 	unitless		
+				
+TYPE: 	Scalar 	 | Constant 	 | Technoeconomic input	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<eqn>0.6</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="PNNL HTL Op Cost" access="output">
+				<doc>DEFINITION: 	PNNL TEA data for HTL pathway for Op cost	
+				
+UNITS: 	USD/yr	
+				
+TYPE: 	Scalar 	 | Instantaneous Equation 	 | Technoeconomic input	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<eqn>Base_PNNL_HTL_Op_Cost * HTL_OpEx_multiplier</eqn>
+				<units>USD/yr</units>
+			</aux>
+			<aux name="USE PNNL HTL TEA" access="output">
+				<doc>DEFINITION: 	switch for using PNNL (vs other) TEA for HTL			
+				
+UNITS: USD
+				
+TYPE: 	Scalar 	 | Constant 	 | Technoeconomic input	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<eqn>1</eqn>
+				<units>unitless</units>
+			</aux>
+			<aux name="PNNL CAFO HTL Scale" access="output">
+				<doc>DEFINITION: 	scale factor for using PNNL (vs other) TEA for HTL			
+				
+UNITS: 	tonne/yr	
+				
+TYPE: 	Scalar 	 | Constant 	 | Technoeconomic input	 | Module Interface
+				
+COMMENTS: 				</doc>
+				<eqn>PNNL_POTW_HTL_Daily_Scale * days_per_year / ton_per_tonne</eqn>
+				<units>tonne/yr</units>
+			</aux>
+			<aux name="PNNL POTW HTL Daily Scale">
+				<doc>DEFINITION: 	scale factor for using PNNL (vs other) TEA for HTL			
+				
+UNITS: 	Unitless		
+				
+TYPE: 	Scalar 	 | Constant 	 | Technoeconomic input	 | Module Interface
+				
+COMMENTS: 				</doc>
+				<eqn>110</eqn>
+				<units>ton per day</units>
+			</aux>
+			<aux name="Pulse Commercial Maturity Quantity">
+				<doc>DEFINITION: 	sets magnitude (as a fraction of the maturity gap) of pulse change in maturity		
+			
+UNITS: 	Unitless
+			
+TYPE: 	Array 	 | Constant 	 | Scenario input
+			
+COMMENTS: 	Default is for pulse to occur in simulated year 2020		
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="Commercial Maturity Pulse Logic">
+				<doc>DEFINITION: 	sets pulse-increase of a specified portion of the commercial-scale maturity gap		
+			
+UNITS: 	Per Year
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Internal Calculation
+			
+COMMENTS: 	Default is for pulse to occur in simulated year 2020		
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>PULSE(Pulse_Commercial_Maturity_Quantity*comm_maturity_gap, 2020, 1e3)</eqn>
+				<units>Per Year</units>
+			</aux>
+			<aux name="Pulse PC Maturity Quantity">
+				<doc>DEFINITION: 	sets magnitude (as a fraction of the maturity gap) of pulse change in maturity		
+			
+UNITS: 	unitless	
+			
+TYPE: 	Array 	 | Constant 	 | Scenario input
+			
+COMMENTS: 	Default is for pulse to occur in simulated year 2020		
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CF">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Elec">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="PNG">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="BCFuel">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="TCFUEL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="HTL">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="CHP">
+					<eqn>0</eqn>
+				</element>
+				<element subscript="Other">
+					<eqn>0</eqn>
+				</element>
+				<units>unitless</units>
+			</aux>
+			<aux name="PC Maturity\nPulse Logic">
+				<doc>DEFINITION: 	sets pulse-increase of a specified portion of the pre-commercial-scale maturity gap		
+			
+UNITS: 	per year	
+			
+TYPE: 	Array 	 | Instantaneous Equation	 | Internal Calculation
+			
+COMMENTS: 	Default is for pulse to occur in simulated year 2020		
+</doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<eqn>PULSE(Pulse_PC_Maturity_Quantity*PC_maturity_gap, 2020, 1e3)</eqn>
+				<units>per year</units>
+			</aux>
+			<aux name="pipeline length miles" access="output">
+				<doc>DEFINITION: 	length of pipeline interconnection (PNG			
+				
+UNITS: 	Miles
+				
+TYPE: 	Scalar 	 | Constant 	 | Assumed value(s)	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<eqn>1</eqn>
+				<units>Miles</units>
+			</aux>
+			<aux name="HTL FCI multiplier">
+				<doc>DEFINITION: 	sensitivity input for HTL FCI
+				
+UNITS: 	See units field, below			
+				
+TYPE: 	Scalar 	 | Constant 	 | Scenario input
+
+				
+COMMENTS: 				</doc>
+				<eqn>1</eqn>
+				<units>Unitless</units>
+			</aux>
+			<aux name="HTL OpEx multiplier">
+				<doc>DEFINITION: 	sensitivity input for HTL Operation Expense
+				
+UNITS: 	See units field, below			
+				
+TYPE: 	Scalar 	 | Constant 	 | Scenario input
+
+				
+COMMENTS: 				</doc>
+				<eqn>1</eqn>
+				<units>Unitless</units>
+			</aux>
+			<aux name="one hundred Pct" access="output">
+				<doc>DEFINITION: 	One hundred		
+			
+UNITS: 	Unitless
+			
+TYPE: 	Scalar 	 | Constant 	 | Data input 
+			
+COMMENTS: 			
+</doc>
+				<eqn>100</eqn>
+				<units>Unitless</units>
+			</aux>
+			<aux name="dummy1">
+				<doc>DEFINITION: 	Charlie McCarthy?		
+			
+UNITS: 	tonne
+			
+TYPE: 	Scalar 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 	used for sensi analysis?		
+</doc>
+				<eqn>1</eqn>
+				<units>tonne</units>
+			</aux>
+			<aux name="dummy">
+				<doc>DEFINITION: 	Charlie McCarthy?		
+			
+UNITS: 	tonne
+			
+TYPE: 	Scalar 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 	used for sensi analysis?		
+</doc>
+				<eqn>1</eqn>
+				<units>tonne</units>
+			</aux>
+			<aux name="dummy2">
+				<doc>DEFINITION: 	Charlie McCarthy?		
+			
+UNITS: 	tonne
+			
+TYPE: 	Scalar 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 	used for sensi analysis?		
+</doc>
+				<eqn>2</eqn>
+				<units>tonne</units>
+			</aux>
+			<aux name="dummy3">
+				<doc>DEFINITION: 	Charlie McCarthy?		
+			
+UNITS: 	tonne
+			
+TYPE: 	Scalar 	 | Constant 	 | Assumed value(s)
+			
+COMMENTS: 	used for sensi analysis?		
+</doc>
+				<eqn>3</eqn>
+				<units>tonne</units>
+			</aux>
+			<aux name="Unit Price Scenario">
+				<doc>DEFINITION: 	Wholesale fuel price scenario		
+			
+UNITS: 	See units field, below		
+			
+TYPE: 	Array 	 | Graphical Function 	 | Scenario input
+			
+COMMENTS: 			
+
+
+SOURCE: EIA AEO, EIA STEO, EIA Electric Power Monthly, EIA-857, EIA-910; data for CHP assumes 64% of energy is converted to heat and 36% is converted to electricity (0.64*retail + 0.36*wholesale) 
+
+COMMENTS: Data for CNG are for retail prices and data for HTL came from the MFSP value in the 2016 PNNL HTL Design Report </doc>
+				<dimensions>
+					<dim name="WTEConfig"/>
+				</dimensions>
+				<element subscript="NoWTE">
+					<gf>
+						<yscale min="0" max="2"/>
+						<xpts>2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040</xpts>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="CF">
+					<gf>
+						<yscale min="0" max="2"/>
+						<xpts>2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040</xpts>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="Elec">
+					<gf>
+						<yscale min="0" max="2"/>
+						<xpts>2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040</xpts>
+						<ypts>0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.8,0.8,0.8,0.85,0.85,0.9,0.9,0.95,0.95,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98,0.98</ypts>
+					</gf>
+				</element>
+				<element subscript="CNG">
+					<gf>
+						<yscale min="0" max="2"/>
+						<xpts>2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040</xpts>
+						<ypts>0.12,0.15,0.15,0.2,0.2,0.2,0.2,0.2,0.25,0.22,0.2,0.15,0.25,0.1,0.2,0.27,0.33,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36</ypts>
+					</gf>
+				</element>
+				<element subscript="PNG">
+					<gf>
+						<xscale min="2000" max="2040"/>
+						<yscale min="0" max="2"/>
+						<ypts>0.12,0.15,0.15,0.2,0.2,0.2,0.2,0.2,0.25,0.22,0.2,0.15,0.25,0.1,0.2,0.27,0.33,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36</ypts>
+					</gf>
+				</element>
+				<element subscript="BCFuel">
+					<gf>
+						<yscale min="0" max="2"/>
+						<xpts>2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040</xpts>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="TCFUEL">
+					<gf>
+						<yscale min="0" max="2"/>
+						<xpts>2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040</xpts>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<element subscript="HTL">
+					<gf>
+						<xscale min="2000" max="2040"/>
+						<yscale min="0" max="5"/>
+						<ypts>0.914554199,0.748787163,0.88622918,0.821531829,0.807369319,0.79320681,0.7790443,0.764881791,0.750719281,0.736556772,0.722394262,0.708231753,0.694069243,0.679906733,0.665744224,0.914554199,0.748787163,0.88622918,1.09562188,1.227431346,1.304880665,1.368363598,1.420273847,1.450972331,1.481915469,1.52981084,1.573505737,1.590318997,1.597793073,1.623625131,1.671574831,1.709677028,1.756463569,1.755708361,1.792784875,1.810284441,1.864639646,1.87382499,1.894338113,1.928833402,1.952721408</ypts>
+					</gf>
+				</element>
+				<element subscript="CHP">
+					<gf>
+						<xscale min="2000" max="2040"/>
+						<yscale min="0" max="3"/>
+						<ypts>1.332385852,1.332385852,1.332385852,1.332385852,1.332385852,1.431163987,1.519652733,1.602983923,1.720282958,1.693530547,1.69918328,1.709472669,1.696604502,1.741877814,1.816321286,1.766202701,1.754988141,1.742060553,1.765246868,1.802056746,1.81517654,1.819845865,1.813686842,1.818153466,1.825765145,1.836918637,1.839961621,1.82577708,1.820761209,1.814040797,1.813808257,1.815231897,1.814726688,1.8151609,1.819206482,1.813388862,1.809605248,1.804101453,1.812446148,1.807942688,1.804505621</ypts>
+					</gf>
+				</element>
+				<element subscript="Other">
+					<gf>
+						<xscale min="0" max="2"/>
+						<yscale min="0" max="2"/>
+						<ypts>0,0,0,0,0,0,0,0,0,0,0</ypts>
+					</gf>
+				</element>
+				<eqn>TIME</eqn>
+				<units>USD/gal</units>
+			</aux>
+			<aux name="Base PNNL HTL Op Cost">
+				<doc>DEFINITION: 	PNNL TEA data for HTL pathway for Op cost	
+				
+UNITS: 	USD/yr	
+				
+TYPE: 	Scalar 	 | Constant 	 | Technoeconomic input	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<eqn>4540000</eqn>
+				<units>USD/yr</units>
+			</aux>
+			<aux name="Base PNNL HTL FCI">
+				<doc>DEFINITION: 	PNNL TEA data for HTL pathway for FCI			
+				
+UNITS: 	USD		
+				
+TYPE: 	Scalar 	 | Constant 	 | Technoeconomic input	 | Module Interface
+				
+COMMENTS: 				
+</doc>
+				<eqn>36200000</eqn>
+				<units>USD</units>
+			</aux>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" border_width="thin" border_style="solid" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" border_width="thin" border_style="solid" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_corner_radius="0" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:fancy_appearance="false" isee:show_hover_tip="when_deciding" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="black" background="white"/>
+				<isee:pie_input color="black" background="white" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch" isee:on_color="green"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt" isee:show_hover_tip="true"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white"/>
+				<isee:animation_object color="black" background="white"/>
+				<isee:navigation_widget color="black" background="white" border_color="#999999" border_width="thin" border_style="solid" item_spacing="6" appearance="tabs" corner_radius="4" selected_item_color="black" selected_item_background="white" item_background="#DDDDDD"/>
+				<isee:shape color="black" background="white" opacity="1" transparent_background="true"/>
+				<isee:selector color="black" background="white"/>
+				<isee:iframe color="black" background="white"/>
+				<isee:financial_table color="black" background="white" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+			</style>
+			<view isee:show_pages="true" background="white" page_width="1024" page_height="784" isee:page_cols="3" isee:page_rows="2" isee:scroll_x="199" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="black" background="white" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="black" background="white" font_size="9pt" label_side="bottom"/>
+					<isee:placeholder color="#228B22" background="white" font_color="#228B22" label_side="bottom"/>
+					<module color="black" background="white" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="55" height="45"/>
+					</module>
+					<aux color="black" background="white" font_size="9pt" label_side="bottom">
+						<shape type="circle" radius="18"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#8B8B8B" background="white" font_color="#8B8B8B" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<aux color="red" font_color="red" x="50" y="119.67" width="18" height="18" name="one year"/>
+				<aux color="red" font_color="red" x="59" y="188" name="three"/>
+				<aux color="red" font_color="red" x="59" y="69" name="one unit"/>
+				<aux color="red" font_color="red" x="56.9286" y="352.596" name="tonne per gram"/>
+				<aux color="red" font_color="red" x="55.4286" y="295.429" name="days per year"/>
+				<aux color="red" font_color="red" x="128" y="69" name="GJ per GGE"/>
+				<aux color="red" font_color="red" x="56.9286" y="410.599" name="ton per tonne"/>
+				<aux color="red" font_color="red" x="128" y="128.67" name="GJ per mmBtu"/>
+				<aux color="red" font_color="red" x="392.25" y="182.67" name="energy content ethanol"/>
+				<aux color="red" font_color="red" x="392.25" y="243.857" name="renewable content ethanol"/>
+				<aux color="red" font_color="red" label_angle="270.047" x="238.953" y="60" width="18" height="18" name="CH4 energy density"/>
+				<aux color="red" font_color="red" x="392.547" y="370.071" name="Carbon Intensity by fuel"/>
+				<aux color="red" font_color="red" x="392.384" y="418.491" name="Energy Economy\nRatio by fuel"/>
+				<aux color="#550000" font_color="#550000" label_side="bottom" x="506.297" y="370.071" name="CI to EER ratio by fuel"/>
+				<connector uid="2062" angle="0">
+					<from>Carbon_Intensity_by_fuel</from>
+					<to>CI_to_EER_ratio_by_fuel</to>
+				</connector>
+				<connector uid="2063" angle="23.0285">
+					<from>Energy_Economy_Ratio_by_fuel</from>
+					<to>CI_to_EER_ratio_by_fuel</to>
+				</connector>
+				<aux color="red" font_color="red" x="383.25" y="119.67" width="18" height="18" name="renewable content WTE Product"/>
+				<aux color="red" font_color="red" x="392.25" y="69" name="energy content WTE Product"/>
+				<aux color="red" font_color="red" label_side="top" x="1532.44" y="265.789" name="RGS Scenario"/>
+				<aux color="red" font_color="red" label_side="top" x="1534.33" y="373.167" name="RIN Scenario"/>
+				<connector uid="2064" angle="26.7764">
+					<from>
+						<alias uid="2065"/>
+					</from>
+					<to>RIN_equivalence_value</to>
+				</connector>
+				<connector uid="2066" angle="358.219">
+					<from>
+						<alias uid="2067"/>
+					</from>
+					<to>RIN_equivalence_value</to>
+				</connector>
+				<aux x="2116.33" y="348.955" name="RIN equivalence value"/>
+				<connector uid="2068" angle="14.1466">
+					<from>
+						<alias uid="2069"/>
+					</from>
+					<to>RIN_equivalence_value</to>
+				</connector>
+				<connector uid="2070" angle="90">
+					<from>
+						<alias uid="2071"/>
+					</from>
+					<to>RIN_equivalence_value</to>
+				</connector>
+				<aux color="black" label_side="right" x="2116.33" y="282.955" name="RIN input GGE"/>
+				<connector uid="2072" angle="90">
+					<from>RIN_equivalence_value</from>
+					<to>RIN_input_GGE</to>
+				</connector>
+				<aux color="black" label_side="top" x="2116.33" y="86.1154" name="Unit Rev Input GGE"/>
+				<connector uid="2073" angle="90">
+					<from>RIN_input_GGE</from>
+					<to>Unit_Rev_Input_GGE</to>
+				</connector>
+				<aux color="red" font_color="red" label_side="bottom" x="1534.33" y="478.596" name="RGS equivalence value"/>
+				<aux color="black" label_side="top" x="1878.58" y="190.785" name="RGS input GGE"/>
+				<connector uid="2074" angle="23.7616">
+					<from>RGS_input_GGE</from>
+					<to>Unit_Rev_Input_GGE</to>
+				</connector>
+				<aux color="red" font_color="red" label_side="bottom" x="1534.33" y="168.634" name="PTC REC Scenario"/>
+				<aux color="#550000" font_color="#550000" label_side="top" x="2285.41" y="86.1154" name="Unit Rev Input GJ"/>
+				<connector uid="2075" angle="0">
+					<from>Unit_Rev_Input_GGE</from>
+					<to>Unit_Rev_Input_GJ</to>
+				</connector>
+				<connector uid="2076" angle="90">
+					<from>
+						<alias uid="2077"/>
+					</from>
+					<to>Unit_Rev_Input_GJ</to>
+				</connector>
+				<aux color="red" font_color="red" x="518.583" y="83" name="feet per mile"/>
+				<aux color="red" font_color="red" label_angle="269.953" x="694.5" y="202.17" name="is it interconnectable"/>
+				<aux color="red" font_color="red" x="817.5" y="83" name="PNG pipeline cost USD per ft"/>
+				<aux color="#550000" font_color="#550000" x="694.5" y="83" name="PNG pipeline cost\nUSD per mi"/>
+				<connector uid="2078" angle="180">
+					<from>PNG_pipeline_cost_USD_per_ft</from>
+					<to>PNG_pipeline_cost_USD_per_mi</to>
+				</connector>
+				<connector uid="2079" angle="0">
+					<from>feet_per_mile</from>
+					<to>PNG_pipeline_cost_USD_per_mi</to>
+				</connector>
+				<aux color="red" font_color="red" x="694.5" y="150.634" name="pipeline fixed cost"/>
+				<group locked="true" color="black" font_color="black" x="15" y="40" width="599.833" height="470.167" name="Physical Inputs and Conversions">
+					<item uid="2080"/>
+				</group>
+				<group locked="true" color="#4A4A4A" font_color="#4A4A4A" x="619" y="40" width="1007" height="470.404" name="Cost and Revenue Related Inputs">
+					<item uid="2081"/>
+					<item uid="2082"/>
+				</group>
+				<group locked="true" color="#4A4A4A" font_color="#4A4A4A" x="1641" y="39.7022" width="732" height="471" name="Calculation of revenue input">
+					<item uid="2065"/>
+					<item uid="2083"/>
+					<item uid="2069"/>
+					<item uid="2067"/>
+					<item uid="2077"/>
+					<item uid="2071"/>
+				</group>
+				<aux color="red" font_color="red" x="238.953" y="173.67" width="18" height="18" name="GGE per gallon ethanol"/>
+				<connector uid="2084" angle="180">
+					<from>
+						<alias uid="2083"/>
+					</from>
+					<to>RGS_input_GGE</to>
+				</connector>
+				<connector uid="2085" angle="315.866">
+					<from>
+						<alias uid="2083"/>
+					</from>
+					<to>RIN_input_GGE</to>
+				</connector>
+				<aux color="red" font_color="red" x="392.25" y="295.429" name="energy\ndensity LCFS Std"/>
+				<aux color="red" font_color="red" x="694.5" y="341.25" name="frac solids remaining after processing"/>
+				<aux color="red" font_color="red" label_side="bottom" x="694.5" y="265.67" name="yield fractional\nimprovement"/>
+				<aux color="red" font_color="red" label_side="bottom" x="1654.58" y="740.619" name="WTE Config Identity Matrix"/>
+				<aux color="red" font_color="red" x="688.167" y="415.92" name="frac DOC dissimilated"/>
+				<aux color="red" font_color="red" x="688.167" y="472.167" name="per tonne tipping fee"/>
+				<connector uid="2086" angle="273.646">
+					<from>frac_rate_of_growth_comm_experience</from>
+					<to>rate_of_doubling_comm_experience</to>
+				</connector>
+				<connector uid="2087" angle="283.241">
+					<from>Commercial_Maturity</from>
+					<to>comm_maturity_gap</to>
+				</connector>
+				<connector uid="2088" angle="285.39">
+					<from>Cumulative_Comm_Experience</from>
+					<to>frac_rate_of_growth_comm_experience</to>
+				</connector>
+				<connector uid="2089" angle="128.131">
+					<from>comm_maturity_gap</from>
+					<to>comm_learning_logic</to>
+				</connector>
+				<connector uid="2090" angle="28.2809">
+					<from>Commercial_Maturity</from>
+					<to>State_of_the_Industry_Multipliers</to>
+				</connector>
+				<connector uid="2091" angle="270.559">
+					<from>rate_of_doubling_comm_experience</from>
+					<to>comm_learning_logic</to>
+				</connector>
+				<connector uid="2092" angle="241.081">
+					<from>logging_comm_experience</from>
+					<to>frac_rate_of_growth_comm_experience</to>
+				</connector>
+				<connector uid="2093" angle="0">
+					<from>Commercial_Maturity</from>
+					<to>Price_scaler</to>
+				</connector>
+				<stock color="#550000" font_color="#550000" label_angle="89.7593" x="805" y="1264.83" name="Commercial Maturity"/>
+				<flow color="black" label_angle="269.99" x="692.916" y="1269.33" name="comm learning logic">
+					<pts>
+						<pt x="603.333" y="1269.33"/>
+						<pt x="782.5" y="1269.33"/>
+					</pts>
+				</flow>
+				<aux color="black" label_angle="269.873" x="744.333" y="1334.83" name="comm maturity gap"/>
+				<stock color="black" label_angle="90.612" x="570.334" y="995.833" width="45" height="35" name="Number of Doublings of Comm Experience"/>
+				<stock color="black" label_angle="118.916" x="608.334" y="826.166" name="Cumulative Comm Experience"/>
+				<flow color="black" label_angle="269.683" x="728.084" y="821.166" name="logging comm experience">
+					<pts>
+						<pt x="825.334" y="821.166"/>
+						<pt x="630.834" y="821.166"/>
+					</pts>
+				</flow>
+				<flow color="black" label_angle="270.005" x="690.417" y="1013.33" name="rate of doubling comm experience">
+					<pts>
+						<pt x="765.501" y="1013.33"/>
+						<pt x="615.334" y="1013.33"/>
+					</pts>
+				</flow>
+				<aux color="black" label_angle="270.01" x="683.334" y="902.166" name="frac rate of growth comm experience"/>
+				<aux color="red" font_color="red" x="561.334" y="906.208" name="Min Comm Experience for Learning"/>
+				<aux color="red" font_color="red" x="124.667" y="1191" name="doubling factor"/>
+				<aux color="red" font_color="red" x="624.334" y="1340.58" name="Comm Progress Ratios"/>
+				<aux color="red" font_color="red" x="88.9167" y="1334.83" name="ProgRatio Multiplier"/>
+				<aux x="892.333" y="1264.83" name="Price scaler"/>
+				<aux color="red" font_color="red" x="940.375" y="1046.25" name="Mature Commercial\nMultipliers"/>
+				<aux color="#550000" font_color="#550000" label_angle="270.002" x="1092.17" y="1110.33" name="State of the Industry Multipliers"/>
+				<aux color="red" font_color="red" x="395.25" y="1110.5" name="Early Industry Multipliers"/>
+				<group locked="true" color="#4A4A4A" font_color="#4A4A4A" x="15.1667" y="537" width="1240" height="867" name="Learning">
+					<item uid="2091"/>
+					<item uid="2094"/>
+					<item uid="2090"/>
+					<item uid="2093"/>
+					<item uid="2089"/>
+					<item uid="2087"/>
+					<item uid="2095"/>
+					<item uid="2088"/>
+					<item uid="2086"/>
+					<item uid="2092"/>
+				</group>
+				<connector uid="2096" angle="162.899">
+					<from>
+						<alias uid="2094"/>
+					</from>
+					<to>rate_of_doubling_comm_experience</to>
+				</connector>
+				<aux color="red" font_color="red" x="856.714" y="1316.83" name="Initial Indices of Comm Maturity"/>
+				<aux color="#55007F" font_color="#55007F" label_side="left" x="674.75" y="639.499" name="LF yrly energy prodn by\nconfig"/>
+				<aux color="#55007F" font_color="#55007F" label_side="left" x="674.75" y="694.541" name="CAFO yrly energy prodn by\nconfig"/>
+				<aux color="#55007F" font_color="#55007F" label_side="left" x="674.75" y="743.699" name="WWTP yrly energy prodn by\nconfig"/>
+				<aux color="red" font_color="red" label_angle="269.861" x="1532.44" y="119.5" name="Unit Price Scenario Multiplier"/>
+				<aux color="black" label_angle="269.861" x="1715" y="82.2854" name="Unit Price Scenario Input"/>
+				<connector uid="2097" angle="359.453">
+					<from>Unit_Price_Scenario_Input</from>
+					<to>Unit_Rev_Input_GGE</to>
+				</connector>
+				<connector uid="2098" angle="11.5218">
+					<from>Unit_Price_Scenario_Multiplier</from>
+					<to>Unit_Price_Scenario_Input</to>
+				</connector>
+				<aux color="black" label_angle="269.861" x="1705.83" y="136.785" name="PTC REC Scenario Input"/>
+				<aux color="red" font_color="red" label_angle="269.861" x="1534.33" y="209.5" name="PTC REC Scenario Multiplier"/>
+				<connector uid="2099" angle="10.5204">
+					<from>PTC_REC_Scenario</from>
+					<to>PTC_REC_Scenario_Input</to>
+				</connector>
+				<connector uid="2100" angle="22.9765">
+					<from>PTC_REC_Scenario_Multiplier</from>
+					<to>PTC_REC_Scenario_Input</to>
+				</connector>
+				<connector uid="2101" angle="3.7395">
+					<from>PTC_REC_Scenario_Input</from>
+					<to>Unit_Rev_Input_GGE</to>
+				</connector>
+				<aux color="black" label_angle="269.861" x="1710.83" y="190.785" name="RGS Scenario Input"/>
+				<connector uid="2102" angle="0">
+					<from>RGS_Scenario_Input</from>
+					<to>RGS_input_GGE</to>
+				</connector>
+				<aux color="red" font_color="red" label_angle="269.861" x="1534.33" y="308.17" name="RGS Scenario Multiplier"/>
+				<connector uid="2103" angle="22.8043">
+					<from>RGS_Scenario</from>
+					<to>RGS_Scenario_Input</to>
+				</connector>
+				<connector uid="2104" angle="33.6266">
+					<from>RGS_Scenario_Multiplier</from>
+					<to>RGS_Scenario_Input</to>
+				</connector>
+				<aux color="red" font_color="red" label_angle="269.861" x="1534.33" y="420.92" name="RIN Scenario Multiplier"/>
+				<aux color="black" label_angle="269.861" x="1731.5" y="283.789" name="RIN Scenario Input"/>
+				<connector uid="2105" angle="0.124071">
+					<from>RIN_Scenario_Input</from>
+					<to>RIN_input_GGE</to>
+				</connector>
+				<connector uid="2106" angle="24.385">
+					<from>RIN_Scenario</from>
+					<to>RIN_Scenario_Input</to>
+				</connector>
+				<connector uid="2107" angle="34.8185">
+					<from>RIN_Scenario_Multiplier</from>
+					<to>RIN_Scenario_Input</to>
+				</connector>
+				<aux color="red" font_color="red" label_angle="270.014" x="518.583" y="177.92" name="conversion efficiencies"/>
+				<aux color="red" font_color="red" x="524.297" y="243.857" name="Gas Conversion Process"/>
+				<aux color="red" font_color="red" x="245.81" y="249.349" name="solids energy density wastewater"/>
+				<aux color="red" font_color="red" x="238.953" y="113.69" width="18" height="18" name="solids energy density manure"/>
+				<aux color="red" font_color="red" label_side="right" x="838.714" y="860.166" name="Exogenous yrly energy prodn by\nconfig"/>
+				<aux color="red" font_color="red" label_side="right" label_angle="315" x="815" y="916.833" name="Exogenous yrly energy Multiplier"/>
+				<aux color="red" font_color="red" x="518.334" y="1209" name="Mature PC multipliers"/>
+				<connector uid="2108" angle="271.705">
+					<from>frac_rate_of_growth_PC_experience</from>
+					<to>rate_of_doubling_PC_experience</to>
+				</connector>
+				<connector uid="2109" angle="283.241">
+					<from>PC_Maturity</from>
+					<to>PC_maturity_gap</to>
+				</connector>
+				<connector uid="2110" angle="287.271">
+					<from>Cumulative_PC_Experience</from>
+					<to>frac_rate_of_growth_PC_experience</to>
+				</connector>
+				<connector uid="2111" angle="144.462">
+					<from>PC_maturity_gap</from>
+					<to>PC_learning_logic</to>
+				</connector>
+				<connector uid="2112" angle="268.738">
+					<from>rate_of_doubling_PC_experience</from>
+					<to>PC_learning_logic</to>
+				</connector>
+				<connector uid="2113" angle="241.081">
+					<from>logging_PC_experience</from>
+					<to>frac_rate_of_growth_PC_experience</to>
+				</connector>
+				<stock color="#550000" font_color="#550000" label_angle="89.7593" x="310.164" y="1269.5" name="PC Maturity"/>
+				<flow color="black" label_angle="269.99" x="199.915" y="1269.5" name="PC learning logic">
+					<pts>
+						<pt x="112.167" y="1269.5"/>
+						<pt x="287.664" y="1269.5"/>
+					</pts>
+				</flow>
+				<aux color="black" label_side="right" label_angle="315" x="244.167" y="1328.5" width="18" height="18" name="PC maturity gap"/>
+				<stock color="black" label_angle="90.612" x="106.667" y="1107.47" name="Number of Doublings\nof PC Experience"/>
+				<stock color="black" label_angle="118.916" x="124.667" y="908.5" name="Cumulative PC Experience"/>
+				<flow color="black" label_angle="269.683" x="244.417" y="903.5" name="logging PC experience">
+					<pts>
+						<pt x="341.667" y="903.5"/>
+						<pt x="147.167" y="903.5"/>
+					</pts>
+				</flow>
+				<flow color="black" label_angle="270.005" x="203.417" y="1110.5" name="rate of doubling\nPC experience">
+					<pts>
+						<pt x="277.667" y="1110.5"/>
+						<pt x="129.167" y="1110.5"/>
+					</pts>
+				</flow>
+				<aux color="black" label_angle="270.01" x="199.667" y="984.503" name="frac rate of growth\nPC experience"/>
+				<aux color="red" font_color="red" label_side="bottom" x="93.1667" y="984.503" name="Min PC experience\nfor learning"/>
+				<aux color="red" font_color="red" x="195.22" y="1337.5" name="PC Progress Ratios"/>
+				<aux color="red" font_color="red" label_side="right" x="359.512" y="807.624" name="Exogenous yrly PC multiplier"/>
+				<aux color="red" font_color="red" label_side="top" x="429.167" y="866.003" name="Exogenous yrly demo experience"/>
+				<aux color="red" font_color="red" x="395.25" y="1291.33" name="Initial Indices of\nPC Maturity"/>
+				<connector uid="2114" angle="14.0124">
+					<from>
+						<alias uid="2095"/>
+					</from>
+					<to>comm_learning_logic</to>
+				</connector>
+				<aux color="black" label_angle="270.002" x="518.334" y="1111.33" name="PC Multipliers"/>
+				<connector uid="2115" angle="37.228">
+					<from>PC_Maturity</from>
+					<to>PC_Multipliers</to>
+				</connector>
+				<connector uid="2116" angle="0.0998474">
+					<from>PC_Multipliers</from>
+					<to>State_of_the_Industry_Multipliers</to>
+				</connector>
+				<aux color="black" label_side="top" x="1510.77" y="84.8367" name="scenario input unit price"/>
+				<connector uid="2117" angle="0.426838">
+					<from>AEO_Reference</from>
+					<to>scenario_input_unit_price</to>
+				</connector>
+				<connector uid="2118" angle="59.2468">
+					<from>Use_AEO_Hi</from>
+					<to>scenario_input_unit_price</to>
+				</connector>
+				<connector uid="2119" angle="16.5339">
+					<from>AEO_High</from>
+					<to>scenario_input_unit_price</to>
+				</connector>
+				<connector uid="2120" angle="54.658">
+					<from>Use_AEO_Low</from>
+					<to>scenario_input_unit_price</to>
+				</connector>
+				<connector uid="2121" angle="31.1712">
+					<from>AEO_Low</from>
+					<to>scenario_input_unit_price</to>
+				</connector>
+				<connector uid="2122" angle="42.7451">
+					<from>User_Defined</from>
+					<to>scenario_input_unit_price</to>
+				</connector>
+				<connector uid="2123" angle="50.5557">
+					<from>Use_AEO_Reference</from>
+					<to>scenario_input_unit_price</to>
+				</connector>
+				<connector uid="2124" angle="64.124">
+					<from>Use_User_Defined</from>
+					<to>scenario_input_unit_price</to>
+				</connector>
+				<aux color="red" font_color="red" x="1332.25" y="86.1667" name="AEO Reference"/>
+				<aux color="red" font_color="red" x="1332.25" y="137.834" name="AEO High"/>
+				<aux color="red" font_color="red" x="1332.25" y="192.834" name="AEO Low"/>
+				<aux color="red" font_color="red" x="1332.25" y="249.837" name="User Defined"/>
+				<aux color="black" x="1320.67" y="404.337" name="Use AEO Hi"/>
+				<aux color="black" x="1320.67" y="352.917" name="Use AEO Low"/>
+				<aux color="black" x="1332.25" y="301.837" name="Use AEO Reference"/>
+				<aux color="black" x="1330.33" y="456.837" name="Use User Defined"/>
+				<connector uid="2125" angle="0.715716">
+					<from>scenario_input_unit_price</from>
+					<to>Unit_Price_Scenario_Input</to>
+				</connector>
+				<aux color="#55007F" font_color="#55007F" label_side="right" x="820.714" y="643.999" name="LF yrly energy prodn by\nconfig 1"/>
+				<aux color="#55007F" font_color="#55007F" label_side="right" x="820.714" y="694.541" name="CAFO yrly energy prodn by\nconfig 1"/>
+				<aux color="#55007F" font_color="#55007F" label_side="right" x="820.714" y="743.699" name="WWTP yrly energy prodn by\nconfig 1"/>
+				<aux color="red" font_color="red" x="802.714" y="472.167" name="dwell time multiplier"/>
+				<aux color="red" font_color="red" x="1244" y="244.67" name="AEO Selector"/>
+				<aux color="red" font_color="red" x="124.667" y="789.624" name="Exogenous yrly demo start"/>
+				<aux color="red" font_color="red" x="124.667" y="835.503" name="Exogenous yrly demo duration"/>
+				<aux color="black" label_angle="270.01" x="291.667" y="853.503" name="exogenous yrly demo quantity"/>
+				<connector uid="2126" angle="230.893">
+					<from>exogenous_yrly_demo_quantity</from>
+					<to>logging_PC_experience</to>
+				</connector>
+				<aux color="black" label_angle="270.01" x="240.667" y="814.503" name="exogenous yrly demo signal"/>
+				<connector uid="2127" angle="265.895">
+					<from>exogenous_yrly_demo_signal</from>
+					<to>logging_PC_experience</to>
+				</connector>
+				<aux color="red" font_color="red" x="1750.43" y="467.167" name="LCFS Multiplier Global"/>
+				<aux color="black" x="1244" y="304" name="integerized AEO Selector"/>
+				<connector uid="2128" angle="270">
+					<from>AEO_Selector</from>
+					<to>integerized_AEO_Selector</to>
+				</connector>
+				<connector uid="2129" angle="1.40409">
+					<from>integerized_AEO_Selector</from>
+					<to>Use_AEO_Reference</to>
+				</connector>
+				<connector uid="2130" angle="327.46">
+					<from>integerized_AEO_Selector</from>
+					<to>Use_AEO_Low</to>
+				</connector>
+				<connector uid="2131" angle="307.383">
+					<from>integerized_AEO_Selector</from>
+					<to>Use_AEO_Hi</to>
+				</connector>
+				<connector uid="2132" angle="299.461">
+					<from>integerized_AEO_Selector</from>
+					<to>Use_User_Defined</to>
+				</connector>
+				<aux color="red" font_color="red" label_side="right" x="1845" y="61.9554" name="Scenario Multiplier Time Threshold"/>
+				<connector uid="2133" angle="188.888">
+					<from>Scenario_Multiplier_Time_Threshold</from>
+					<to>Unit_Price_Scenario_Input</to>
+				</connector>
+				<connector uid="2134" angle="208.266">
+					<from>Scenario_Multiplier_Time_Threshold</from>
+					<to>PTC_REC_Scenario_Input</to>
+				</connector>
+				<connector uid="2135" angle="223.837">
+					<from>Scenario_Multiplier_Time_Threshold</from>
+					<to>RGS_Scenario_Input</to>
+				</connector>
+				<connector uid="2136" angle="242.904">
+					<from>Scenario_Multiplier_Time_Threshold</from>
+					<to>RIN_Scenario_Input</to>
+				</connector>
+				<aux color="red" font_color="red" label_side="top" x="1672.79" y="283.789" name="Rins Active"/>
+				<connector uid="2137" angle="0">
+					<from>Rins_Active</from>
+					<to>RIN_Scenario_Input</to>
+				</connector>
+				<aux color="red" font_color="red" x="808.547" y="264.955" name="frac POTW solid outflux diverted"/>
+				<aux color="red" font_color="red" x="808.547" y="330.75" name="biosolid diversion unit rev"/>
+				<aux color="red" font_color="red" x="929.067" y="202.17" name="frac POTW influx to coproduct"/>
+				<aux color="red" font_color="red" x="938.821" y="146.67" name="POTW coproduct unit rev"/>
+				<aux color="red" font_color="red" x="128" y="191.5" name="one million"/>
+				<aux color="red" background="white" font_color="red" label_side="left" x="1654.58" y="689.67" name="conversion invest flags"/>
+				<aux color="red" font_color="red" x="1389.66" y="717.003" name="small only flags"/>
+				<aux color="red" font_color="red" x="1389.66" y="774.667" name="med only flags"/>
+				<aux color="red" font_color="red" x="1389.66" y="832.099" name="large only flags"/>
+				<aux color="red" font_color="red" label_side="right" x="1389.66" y="586.337" name="available scales for no WTE"/>
+				<aux color="red" font_color="red" label_side="right" x="1389.66" y="626.837" name="available scales for 25 or 50"/>
+				<aux color="red" font_color="red" label_side="right" x="1389.66" y="667.997" name="available scales for 75"/>
+				<aux color="red" background="white" font_color="red" label_side="left" x="1654.58" y="602.67" name="No WTE Only Flag"/>
+				<aux color="red" background="white" font_color="red" label_side="left" x="1654.58" y="646" name="CF Only Flag"/>
+				<group locked="false" color="#4A4A4A" font_color="#4A4A4A" x="1261.17" y="536.619" width="529" height="424" name="Partial scale flags"/>
+				<aux color="red" font_color="red" x="429.167" y="978.333" name="multiplier for\nmaturity all factors"/>
+				<aux x="499.167" y="1030.83" width="18" height="18" name="multiplier maturity all factors arrayed"/>
+				<connector uid="2138" angle="9.46232">
+					<from>multiplier_for_maturity_all_factors</from>
+					<to>multiplier_maturity_all_factors_arrayed</to>
+				</connector>
+				<connector uid="2139" angle="302.969">
+					<from>multiplier_maturity_all_factors_arrayed</from>
+					<to>PC_Multipliers</to>
+				</connector>
+				<aux color="red" font_color="red" x="1320.67" y="586.337" name="partial investment flag"/>
+				<connector uid="2140" angle="0">
+					<from>partial_investment_flag</from>
+					<to>available_scales_for_no_WTE</to>
+				</connector>
+				<aux color="red" font_color="red" x="813.69" y="202.17" name="frac CAFO solid\noutflux diverted"/>
+				<aux color="black" background="#FFAAFF" label_side="top" x="1148.33" y="312.92" name="PNNL HTL FCI"/>
+				<aux color="black" background="#FFAAFF" label_side="top" x="1150.33" y="433.33" name="PNNL POTW HTL Scale"/>
+				<aux color="black" background="#FFAAFF" x="1148.33" y="364.92" name="PNNL scale factor"/>
+				<aux color="black" background="#FFAAFF" x="1150.33" y="471.33" name="PNNL HTL Op Cost"/>
+				<aux color="black" background="#FFAAFF" label_side="top" x="1149.33" y="267.837" name="USE PNNL HTL TEA"/>
+				<connector uid="2141" angle="0">
+					<from>
+						<alias uid="2080"/>
+					</from>
+					<to>solids_energy_density_wastewater</to>
+				</connector>
+				<aux color="black" background="#FFAAFF" label_side="top" x="1147.83" y="148.163" name="PNNL CAFO HTL Scale"/>
+				<connector uid="2142" angle="359.939">
+					<from>
+						<alias uid="2082"/>
+					</from>
+					<to>PNNL_CAFO_HTL_Scale</to>
+				</connector>
+				<connector uid="2143" angle="32.2514">
+					<from>
+						<alias uid="2081"/>
+					</from>
+					<to>PNNL_CAFO_HTL_Scale</to>
+				</connector>
+				<aux color="black" background="#FFAAFF" label_side="top" x="1147.83" y="219.762" name="PNNL POTW HTL Daily Scale"/>
+				<connector uid="2144" angle="90">
+					<from>PNNL_POTW_HTL_Daily_Scale</from>
+					<to>PNNL_CAFO_HTL_Scale</to>
+				</connector>
+				<aux color="red" font_color="red" x="892.333" y="1166.66" name="Pulse Commercial Maturity Quantity"/>
+				<aux color="black" x="765.834" y="1166.66" name="Commercial Maturity Pulse Logic"/>
+				<connector uid="2145" angle="180">
+					<from>Pulse_Commercial_Maturity_Quantity</from>
+					<to>Commercial_Maturity_Pulse_Logic</to>
+				</connector>
+				<aux color="red" font_color="red" x="331.756" y="1166.66" name="Pulse PC Maturity Quantity"/>
+				<aux color="black" x="249.667" y="1200" width="18" height="18" name="PC Maturity\nPulse Logic"/>
+				<connector uid="2146" angle="210.083">
+					<from>Pulse_PC_Maturity_Quantity</from>
+					<to>PC_Maturity_Pulse_Logic</to>
+				</connector>
+				<connector uid="2147" angle="87.5491">
+					<from>PC_maturity_gap</from>
+					<to>PC_Maturity_Pulse_Logic</to>
+				</connector>
+				<connector uid="2148" angle="225.84">
+					<from>PC_Maturity_Pulse_Logic</from>
+					<to>PC_learning_logic</to>
+				</connector>
+				<connector uid="2149" angle="234.617">
+					<from>Commercial_Maturity_Pulse_Logic</from>
+					<to>comm_learning_logic</to>
+				</connector>
+				<connector uid="2150" angle="86.7702">
+					<from>comm_maturity_gap</from>
+					<to>Commercial_Maturity_Pulse_Logic</to>
+				</connector>
+				<aux color="red" font_color="red" x="813.69" y="146.67" name="pipeline length miles"/>
+				<aux color="red" font_color="red" x="1060" y="312.92" name="HTL FCI multiplier"/>
+				<aux color="red" font_color="red" label_side="top" x="1062" y="471.33" name="HTL OpEx multiplier"/>
+				<connector uid="2151" angle="4.59355">
+					<from>HTL_FCI_multiplier</from>
+					<to>PNNL_HTL_FCI</to>
+				</connector>
+				<connector uid="2152" angle="0">
+					<from>HTL_OpEx_multiplier</from>
+					<to>PNNL_HTL_Op_Cost</to>
+				</connector>
+				<aux color="red" font_color="red" label_side="top" x="59" y="243.857" name="one hundred Pct"/>
+				<aux x="1500.18" y="904.893" name="dummy1"/>
+				<aux x="1455.54" y="906.619" name="dummy"/>
+				<aux x="1549.46" y="904.893" name="dummy2"/>
+				<aux x="1594.11" y="904.893" name="dummy3"/>
+				<aux color="red" font_color="red" label_angle="269.861" x="938.821" y="86.1154" name="Unit Price Scenario"/>
+				<connector uid="2153" angle="23.1008">
+					<from>RGS_equivalence_value</from>
+					<to>RGS_input_GGE</to>
+				</connector>
+				<connector uid="2154" angle="298.923">
+					<from>WWTP_yrly_energy_prodn_by_config</from>
+					<to>logging_comm_experience</to>
+				</connector>
+				<connector uid="2155" angle="296.128">
+					<from>CAFO_yrly_energy_prodn_by_config</from>
+					<to>logging_comm_experience</to>
+				</connector>
+				<connector uid="2156" angle="294.083">
+					<from>LF_yrly_energy_prodn_by_config</from>
+					<to>logging_comm_experience</to>
+				</connector>
+				<connector uid="2157" angle="219.365">
+					<from>WWTP_yrly_energy_prodn_by_config_1</from>
+					<to>logging_comm_experience</to>
+				</connector>
+				<connector uid="2158" angle="236.233">
+					<from>CAFO_yrly_energy_prodn_by_config_1</from>
+					<to>logging_comm_experience</to>
+				</connector>
+				<connector uid="2159" angle="247.372">
+					<from>LF_yrly_energy_prodn_by_config_1</from>
+					<to>logging_comm_experience</to>
+				</connector>
+				<connector uid="2160" angle="132.256">
+					<from>Exogenous_yrly_energy_Multiplier</from>
+					<to>logging_comm_experience</to>
+				</connector>
+				<connector uid="2161" angle="157.829">
+					<from>Exogenous_yrly_energy_prodn_by_config</from>
+					<to>logging_comm_experience</to>
+				</connector>
+				<connector uid="2162" angle="0.738738">
+					<from>Min_Comm_Experience_for_Learning</from>
+					<to>frac_rate_of_growth_comm_experience</to>
+				</connector>
+				<connector uid="2163" angle="353.088">
+					<from>Exogenous_yrly_demo_start</from>
+					<to>exogenous_yrly_demo_signal</to>
+				</connector>
+				<connector uid="2164" angle="7.80763">
+					<from>Exogenous_yrly_demo_duration</from>
+					<to>exogenous_yrly_demo_signal</to>
+				</connector>
+				<connector uid="2165" angle="212.576">
+					<from>Exogenous_yrly_PC_multiplier</from>
+					<to>exogenous_yrly_demo_quantity</to>
+				</connector>
+				<connector uid="2166" angle="174.806">
+					<from>Exogenous_yrly_demo_experience</from>
+					<to>exogenous_yrly_demo_quantity</to>
+				</connector>
+				<connector uid="2167" angle="0">
+					<from>Min_PC_experience_for_learning</from>
+					<to>frac_rate_of_growth_PC_experience</to>
+				</connector>
+				<connector uid="2168" angle="351.804">
+					<from>Early_Industry_Multipliers</from>
+					<to>PC_Multipliers</to>
+				</connector>
+				<connector uid="2169" angle="47.2346">
+					<from>doubling_factor</from>
+					<to>rate_of_doubling_PC_experience</to>
+				</connector>
+				<connector uid="2170" angle="344.71">
+					<from>Mature_Commercial_Multipliers</from>
+					<to>State_of_the_Industry_Multipliers</to>
+				</connector>
+				<connector uid="2171" angle="88.588">
+					<from>Mature_PC_multipliers</from>
+					<to>PC_Multipliers</to>
+				</connector>
+				<connector uid="2172" angle="86.05">
+					<from>PC_Progress_Ratios</from>
+					<to>PC_learning_logic</to>
+				</connector>
+				<connector uid="2173" angle="30.4796">
+					<from>ProgRatio_Multiplier</from>
+					<to>PC_learning_logic</to>
+				</connector>
+				<connector uid="2174" angle="46.0929">
+					<from>Comm_Progress_Ratios</from>
+					<to>comm_learning_logic</to>
+				</connector>
+				<alias color="red" background="white" font_style="italic" font_color="red" uid="2067" x="1873.07" y="332.67" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>energy_content_WTE_Product</of>
+				</alias>
+				<alias color="red" background="white" font_style="italic" font_color="red" uid="2065" x="1873.07" y="458.167" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>renewable_content_WTE_Product</of>
+				</alias>
+				<alias color="red" font_color="red" uid="2071" x="2107.33" y="417.455" width="18" height="18">
+					<of>renewable_content_ethanol</of>
+				</alias>
+				<alias color="red" font_color="red" uid="2069" x="1873.07" y="399" width="18" height="18">
+					<of>energy_content_ethanol</of>
+				</alias>
+				<alias color="red" background="white" font_color="red" label_side="right" uid="2077" x="2276.41" y="136.955" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>GJ_per_GGE</of>
+				</alias>
+				<alias color="red" background="white" font_style="italic" font_color="red" label_side="top" uid="2083" x="2012.33" y="181.785" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>GGE_per_gallon_ethanol</of>
+				</alias>
+				<alias color="red" background="white" font_style="italic" font_color="red" uid="2094" x="806" y="1042.66" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>doubling_factor</of>
+				</alias>
+				<alias color="red" font_style="italic" font_color="red" uid="2095" x="542.667" y="1295.58" width="18" height="18">
+					<of>ProgRatio_Multiplier</of>
+				</alias>
+				<alias color="black" background="#FFAAFF" font_style="italic" label_side="top" uid="2080" x="178.143" y="240.349" width="18" height="18">
+					<of>USE_PNNL_HTL_TEA</of>
+				</alias>
+				<alias color="red" font_style="italic" font_color="red" uid="2081" x="1059.71" y="189.087" width="18" height="18">
+					<of>ton_per_tonne</of>
+				</alias>
+				<alias color="red" font_style="italic" font_color="red" uid="2082" x="1066.5" y="139.087" width="18" height="18">
+					<of>days_per_year</of>
+				</alias>
+				<aux color="red" background="white" font_color="red" x="1226" y="451.33" name="Base PNNL HTL Op Cost"/>
+				<connector uid="2175" angle="168.491">
+					<from>Base_PNNL_HTL_Op_Cost</from>
+					<to>PNNL_HTL_Op_Cost</to>
+				</connector>
+				<aux color="red" background="white" font_color="red" label_side="bottom" x="1067.71" y="369.337" name="Base PNNL HTL FCI"/>
+				<connector uid="2176" angle="30.6717">
+					<from>Base_PNNL_HTL_FCI</from>
+					<to>PNNL_HTL_FCI</to>
+				</connector>
+			</view>
+		</views>
+	</model>
+</xmile>
+
